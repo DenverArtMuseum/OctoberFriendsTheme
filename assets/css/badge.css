@@ -3,11 +3,10 @@
 }
 
 .preview {
-    background: #ebeae6;
+    background: rgba(255,255,255,1);
     color: #8d7c75;
-    padding: 15px;
-    height: 500px;
-    margin-bottom: 20px;
+    padding:.75em .5em .75em .375em;
+    margin-bottom:.25em;
     position: relative;
     overflow: hidden;
     font-size: 0.8em;
@@ -87,11 +86,6 @@
 }
 
 .friends-activity.preview {
-    min-height: 170px;
-}
-
-.preview img {
-    max-width: 100%;
 }
 
 .most-recent-badge h3 {

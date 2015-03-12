@@ -54,6 +54,7 @@ cssClass = "nav-item notifications-feed icon-envelope"
     <header id="layout-header">
         {% if user %}
         <!-- Nav -->
+<!--        
         <nav id="layout-nav" class="navbar-inverse" role="navigation">
             <div class="container">
                 <div class="collapse navbar-collapse navbar-main-collapse">
@@ -66,14 +67,28 @@ cssClass = "nav-item notifications-feed icon-envelope"
                     <ul class="nav navbar-nav right">
                         <li><a class="nav-item activity-feed icon-list" href="/activity-stream">Activity Stream</a></li>
                         <li>{% component 'NotificationCounter' %}</li>
-                        <!--
                         <li><a class="nav-item group-feed icon-users" href="/group">Groups</a></li>
-                        -->
                         <li><a class="nav-item user-logout icon-sign-out" href="/logout">Sign out</a></li>
                     </ul>
 
                 </div>
             </div>
+        </nav>
+-->
+            <nav class="clearfix primary-links">
+            <div class="item">
+                <a class="icon-thumbs-up" href="/friends">Recommend</a>
+            </div>
+            <div class="item">
+                <a class="icon-user" href="/profile">My Profile</a>
+            </div>
+            <div class="item">
+                <a class="icon-compass" href="/explore">Explore</a>
+            </div>
+            <div class="item">
+                <a class="icon-sign-out" href="/logout">Sign Out</a>
+            </div>
+            </ul>
         </nav>
         {% endif %}
 

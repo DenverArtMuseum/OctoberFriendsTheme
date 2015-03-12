@@ -1,0 +1,16 @@
+<div
+    {% if class %}
+        class="{{ class }}"
+    {% endif %}
+>
+    <div class="friends-badge preview">
+        <h4>{{ model.title }}</h4>
+
+        <div class="description">
+            {{ model.excerpt|raw }}
+        </div>
+        <div class="earned">
+            {{ model.timeAgo }}
+        </div>
+    </div>
+</div>
