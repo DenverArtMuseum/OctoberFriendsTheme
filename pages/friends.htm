@@ -1,49 +1,28 @@
-title = "DMA Friends"
+title = "Friends"
 url = "/friends"
 layout = "default"
-description = "Welcome to DMA Friends"
+description = "Welcome to Friends"
 hidden = "0"
 
 [ActivityCodeForm]
 
-
-[UserMostRecentBadge]
-
-
-[Recommendations activities]
+[Recommendations 'activitylist']
 recommend = "activity"
-viewTemplate = 'dma.recommendations::%sPreview'
 ifEmpty = "weight"
 limit = "12"
+
+[ActivityFilters]
+target_component = 'activitylist'
 ==
 <?php 
-use RainLab\User\Models\User;
-use DMA\Friends\Models\Activity;
-use DMA\Friends\Models\Badge;
 ?>
 ==
-<div class="row content">
-    <div class="col-md-8 col-sm-8">
+<div class="content">
         <div class="hideform">{% component 'ActivityCodeForm' %}</div>
-        <div class="filters">
-            <a href="#" class="icon-filter filters-menu"></a>
-            <ul>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="unexpected">Unexpected</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="socialize-hang-out">Socialize &amp; Hang Out</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="rest-and-relax">Rest and Relax</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="off-the-beaten-path">Off the Beaten Path</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="learn-about-art">Learn About Art</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="family">Family</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="create-and-do">Create and Do</a></li>
-                <li><a class="filtertoggle icon-check-square-o" href="#" data-category-slug="behind-the-scenes">Behind the Scenes</a></li>
-            </ul>
-        </div>
+
+        {% component 'ActivityFilters' %}
+
         <h3>Things to Do</h3>
-        {% component 'activities' %}
-    </div>
-<!--
-    <div class="col-md-4 col-sm-4">
-        <h3>My Latest Badge</h3>
-        {% component 'UserMostRecentBadge' %}
-    </div> -->
+        {% component 'activitylist' %}
+
 </div>

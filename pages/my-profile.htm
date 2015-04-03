@@ -4,7 +4,26 @@ layout = "default"
 hidden = "0"
 
 [UserProfile]
-==
-<h3>My Profile</h3>
 
-{% component 'UserProfile' %}
+[ActivityStream]
+==
+<?
+function onStart()
+{
+    $this->addJs('assets/javascript/page-tabs.js');
+}
+?>
+==
+
+<div id="page-tabs">
+    <ul>
+        <li><a href="#tab-1">My Activities</a></li>
+        <li><a href="#tab-2">My Profile</a></li>
+    </ul>
+    <div id="tab-1">
+        <div id="activity-stream">{% component 'ActivityStream' %}</div>
+    </div>
+    <div id="tab-2">
+        {% component 'UserProfile' %}
+    </div>
+</div>

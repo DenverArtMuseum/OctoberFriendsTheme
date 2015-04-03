@@ -1,0 +1,18 @@
+<div
+    {% if class %}
+        class="{{ class }}"
+    {% endif %}
+>
+    <div class="friends-activity preview" data-categories="{% for category in model.categories %}{{category.slug}} {% endfor %}">
+        <a class="do-btn icon-plus-square-o" href="#" data-activity-code="{{model.activity_code}}"></a>
+        {% if model.image.path %}
+            <a href="/activity/{{model.id}}"><img src="{{model.image.path}}" /></a>
+        {% else %}
+            <a href="/activity/{{model.id}}"><img src="" /></a>
+        {% endif %}
+        <h4><a href="/activity/{{model.id}}">{{ model.title }}</a></h4>
+        <!-- <div class="description">
+            {{ model.excerpt|raw }}
+        </div> -->
+    </div>
+</div>

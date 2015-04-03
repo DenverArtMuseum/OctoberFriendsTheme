@@ -1,0 +1,17 @@
+title = "Explore"
+url = "/explore"
+layout = "default"
+hidden = "0"
+
+[ActivityCatalog 'activitylist']
+
+[ActivityFilters]
+target_component = "activitylist"
+==
+<?php
+
+?>
+==
+{% component 'ActivityFilters' %}
+
+{% component 'activitylist' %}

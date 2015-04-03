@@ -515,6 +515,20 @@ ul.nav.navbar-nav.left {
 
 /***** Misc ******/
 
+/* Page Styles */
+.content {
+  position:relative;
+  padding-bottom:65px;
+}
+
+/* Filtered Activity List */
+.friends-filtered-activity-list {
+  list-style:none;
+  padding:0;
+}
+
+/* Activity Preview */
+
 .preview img {
     max-width: 90px;
     float:left;
@@ -532,7 +546,10 @@ ul.nav.navbar-nav.left {
 
 .preview a.do-btn {
   color:rgba(108,192,105,1);
-  font-size:2em;
+  font-size:2.5em;
+  position:relative;
+  top:.125em;
+  right:.125em;
   float:right;
   margin-left:4px;
   margin-bottom:4px;
@@ -541,6 +558,31 @@ ul.nav.navbar-nav.left {
 .preview.completed {
   display:none;
 }
+
+.preview h3 {
+  font-size:1em;
+  font-weight:normal;
+  margin:0;
+  padding:0;
+}
+
+/* Extended Content in lists */
+.preview .extended-content {
+  transition:height 1s;
+  height:0px;
+  overflow:hidden;
+  width:100%;
+}
+
+.preview .extended-content p {
+  margin:0;
+  padding:0;
+}
+
+.preview.reveal .extended-content {
+  height:auto;
+}
+
 
 span.form-control-feedback {
   top: 30px;
@@ -554,63 +596,76 @@ span.form-control-feedback {
   margin-bottom: 150px;
 }
 
-.filters {
+/* ActivityFilters component */
+.friends-activity-filters {
+  line-height:1.2em;
   background:#fff;
   padding:0;
   font-size:.75em;
   float:right;
-  position:relative;
+  position:absolute;
+  top:.25em;
+  right:.25em;
   z-index:510;
   border:2px solid rgba(108,192,105,1);
   border-radius:8px;
 }
 
-.filters-menu:before {
+.filters-menu-btn:before {
   display:block;
+  position:relative;
+  text-align:right;
+  float:right;
+  top:0;
+  right:0;
+  z-index:501;
   padding:.125em .25em;
   font-size:1.5em;
   color:rgba(108,192,105,1);
   text-decoration:none;
 }
-.filters-menu:hover {
+.filters-menu-btn:hover {
   text-decoration:none;
 }
 
-.filters ul {
-  padding:.75em 1em;
+.friends-activity-filters ul {
+  padding:1.25em 1em .75em 1em;
   margin:0;
   list-style:none;
   display:none;
-  position:absolute;
-  right:0;
-  top:1.875em;
+  position:relative;
   z-index:500;
-  background:#fff;
 }
-.filters.toggle-on ul {
+.friends-activity-filters.toggle-on ul {
   display:block;
 }
 
-.filters ul li {
+.friends-activity-filters ul li {
   border-bottom:1px solid black;
   padding-bottom:.25em;
   margin-bottom:.25em;
   white-space:nowrap;
 }
 
-.filters ul li:last-child {
+.friends-activity-filters ul li:last-child {
   border-bottom:none;
   margin:0;
   padding:0;
 }
 
-.filtertoggle, .filtertoggle:hover {
+.friends-activity-filter, .friends-activity-filter:hover,
+.friends-activity-filter-all, .friends-activity-filter-all:hover {
+  font-family:FontAwesome;
   color:rgba(108,192,105,1);
   text-decoration:none;
 }
 
-.filtertoggle:before {
+.friends-activity-filter:before {
   padding:0 .25em;
+}
+
+.friends-activity-filter-all {
+  padding-left:1.25em;
 }
 
 h3 {
