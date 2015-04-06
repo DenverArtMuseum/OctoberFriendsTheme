@@ -24,22 +24,33 @@
   //var active_filters = [];
 
   $('a.friends-activity-filter').click(function () {
+    // remove this line when AJAX works on Recommendations
     //var slug = $(this).data('filter-name');
 
     if ($(this).hasClass('icon-square-o')) {
       $(this).removeClass('icon-square-o').addClass('icon-check-square-o');
+      // remove these two lines when AJAX works on Recommendations
       //var position = $.inArray(slug, active_filters);
-
       //if ( ~position ) active_filters.splice(position, 1); 
     }
     else {
       $(this).removeClass('icon-check-square-o').addClass('icon-square-o');
+      // remove this line when AJAX works on Recommendations
       //active_filters.push(slug);
     }
 
+    // remove this line when AJAX works on Recommendations
     //updateRecommendationListFilters(active_filters)
 
     return false;
+  });
+
+  $('a.friends-activity-filter-all').click(function () {
+    $('a.friends-activity-filter').each(function () {
+      if ($(this).hasClass('icon-square-o')) {
+        $(this).removeClass('icon-square-o').addClass('icon-check-square-o');
+      }
+    });
 
   });
 
@@ -57,6 +68,7 @@
       menubutton.removeClass('icon-filter').addClass('icon-close');
     }
 
+    return false;
   });
 
   /* END FILTER THEME TWEAKS */

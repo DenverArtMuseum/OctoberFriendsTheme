@@ -1,6 +1,6 @@
 <ul class="friends-filtered-activity-list">
     {% for activity in activities %}
-    <li class="friends-activity preview" data-categories="{% for category in activity.categories %} {{ category.slug }} {% endfor %}">
+    <li class="friends-activity preview" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
         <a class="do-btn icon-plus-square-o" href="#" data-activity-code="{{activity.activity_code}}"></a>
         {% if activity.image.path %}
             <img src="{{activity.image.path}}" />

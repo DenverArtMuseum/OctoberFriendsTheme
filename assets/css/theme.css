@@ -671,3 +671,37 @@ span.form-control-feedback {
 h3 {
   margin-top:20px;
 }
+
+.ui-widget-header {
+  background:rgba(219,219,219,1);
+  border:none;
+}
+
+.ui-corner-all.ui-tabs-nav {
+  border-radius:0px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+}
+
+.ui-tabs.ui-corner-all {
+  border-radius:0;
+  padding:0;
+  border:0;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+  color:#666;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color:#000;
+}
+
+
+
+
+
+
+
+
+
