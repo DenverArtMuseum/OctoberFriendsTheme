@@ -1,7 +1,4 @@
 description = "Default layout"
-
-[UserTimeout]
-timeout = "60"
 ==
 <?php
 function onStart()
@@ -16,11 +13,8 @@ function onStart()
 ==
 {% partial "header" %}
 
-<!-- Content -->
-<section id="layout-content" class="container">
+<div id="layout-container" class="page-content container">
     {% page %}
-    
-    
-</section>
+</div>
 
 {% partial "footer" %}

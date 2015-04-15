@@ -1,6 +1,6 @@
-<ul class="friends-filtered-activity-list">
+<div class="friends-filtered-activity-list">
     {% for activity in activities %}
-    <li class="friends-activity preview" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
+    <div class="friends-activity preview" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
         <a class="do-btn icon-plus-square-o" href="#" data-activity-code="{{activity.activity_code}}"></a>
         {% if activity.image.path %}
             <img src="{{activity.image.path}}" />
@@ -8,12 +8,19 @@
             <img src="" />
         {% endif %}
         <h3>{{ activity.title }}</h3>
-        {{ activity.activity_fields.duration }}
-        {{ activity.activity_fields.location }}
+        <div class="activity-time">
+            <span class="activity-duration icon-spinner">{{ activity.activity_fields.duration }}</span>
+            {% if activity.activity_fields.start_time != "00:00" %}
+                <span class="activity-start-time icon-clock-o">{{ activity.activity_fields.start_time }}</span>
+            {% endif %}
+        </div>
+        <div class="activity-location">
+            <span class="icon-map-marker">{{ activity.activity_fields.location }}</span>
+        </div>
         <div class="extended-content">
             {{ activity.description|raw }}
         </div>
-    </li>
+    </div>
     {% endfor %}
-</ul>
+</div>
 <div class="links">{{ links|raw }}</div>

@@ -75,7 +75,7 @@
 
 
   /* BEGIN EXTENDED CONTENT INTERACTIONS */
-  $('li.friends-activity.preview').click(function() {
+  $('.friends-activity.preview').click(function() {
     toggleExtendedContent($(this));
   });
 

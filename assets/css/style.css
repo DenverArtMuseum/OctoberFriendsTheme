@@ -1,0 +1,335 @@
+/* RESET/DEFAULT STYLES
+-----------------------------------------------------------------------------*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+*:focus {
+  outline: none; }
+
+html {
+  /* Sets up the Base 10 stuff */
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+body,
+h1,
+h2,
+h2 a,
+h3,
+h4,
+h5,
+h6,
+p,
+select,
+textarea,
+fieldset {
+  color: #8d7c75;
+  font-family: Verdana, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  margin: 0;
+  padding: 0;
+  text-decoration: none; }
+
+body {
+    background-color: rgba(219,219,219,1);
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    -webkit-background-origin: padding-box;
+}
+
+body.full-res {
+  zoom: 1 !important;
+  text-rendering: optimizeLegibility; }
+
+blockquote, input, select, textarea, button, .button {
+  background: #fff;
+  color: #8d7c75;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  vertical-align: center;
+  position: relative;
+  margin: 0;
+}
+
+p {
+  margin: 10px 0;
+}
+
+input[type="button"], input[type="submit"], button, select, .button, .button:hover {
+  text-decoration: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  padding: 20px 20px 18px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+input.form-control {
+  border: 2px solid #8d7c75 !important;
+  border-radius: 0 !important;
+  padding: 20px;
+}
+select.form-control {
+  border: 2px solid #8d7c75 !important;
+  border-radius: 0 !important;
+  height: 44px;
+}
+
+.hideform { display: none; }
+
+label {
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.form-group.is-required > label:after {
+  margin-left: 5px;
+}
+.btn-primary.disabled, 
+.btn-primary[disabled], 
+fieldset[disabled] .btn-primary, 
+.btn-primary.disabled:hover, 
+.btn-primary[disabled]:hover, 
+fieldset[disabled] .btn-primary:hover, 
+.btn-primary.disabled:focus, 
+.btn-primary[disabled]:focus, 
+fieldset[disabled] .btn-primary:focus, 
+.btn-primary.disabled:active, 
+.btn-primary[disabled]:active, 
+fieldset[disabled] .btn-primary:active, 
+.btn-primary.disabled.active, 
+.btn-primary[disabled].active, 
+fieldset[disabled] .btn-primary.active,
+.btn-primary:hover,
+.btn-primary {
+  background-color: #00a4b0 !important;
+  border-color: #00a4b0 !important;
+  color: #fff;
+}
+
+.btn-default {
+  border: 2px solid #d5cec8;
+  background-color: #d5cec8;
+  color: #8d7c75;
+}
+
+fieldset {
+  border: 0; 
+}
+
+blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:disabled, .button:disabled {
+  cursor: default; }
+
+/* PAGE
+-----------------------------------------------------------------------------*/
+.page-content {
+  padding:0 4%;
+  padding-bottom:50px;
+}
+
+.col-left {
+  float:left;
+}
+
+.col-right {
+  float:right;
+}
+
+/* HEADER
+-----------------------------------------------------------------------------*/
+.primary-links {
+  -webkit-text-size-adjust: 100%;
+  line-height:1.4em;
+  width:100%;
+  font-size: 0.5em;
+  position:fixed;
+  bottom:0;
+  z-index:900;
+}
+
+.primary-links .item {
+    width: 25%;
+    text-align: center;
+    float: left;
+}
+
+.primary-links .item a:before {
+  font-size: 3em;
+  display: block;
+}
+.primary-links .item a, .primary-link .item a:hover {
+  display: block;
+  width: 100%;
+  padding:.25em;
+  height: 100%;
+  background: #fff;
+  color: rgba(108,192,105,1);
+  border: 1px solid rgba(108,192,105,1);
+  text-decoration: none;
+}
+
+
+/* FLASH MESSAGES
+-----------------------------------------------------------------------------*/
+
+
+
+
+/* ACTIVITY LIST
+-----------------------------------------------------------------------------*/
+.preview img {
+    max-width: 90px;
+    float:left;
+    margin-right:6px;
+    margin-bottom:8px;
+}
+
+.preview.filtered {
+  display: none;
+}
+
+.preview {
+    background: rgba(255,255,255,1);
+    color: #8d7c75;
+    padding:.75em .5em .75em .375em;
+    margin-bottom:.25em;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.8em;
+    display:block;
+}
+
+.preview a {
+    color: #8d7c75;
+    text-decoration: none;
+}
+
+.preview a.do-btn {
+  color:rgba(108,192,105,1);
+  font-size:2.5em;
+  position:relative;
+  top:.125em;
+  right:.125em;
+  float:right;
+  margin-left:4px;
+  margin-bottom:4px;
+}
+
+.preview.completed {
+  display:none;
+}
+
+.preview h3 {
+  font-size:1.25em;
+  font-weight:normal;
+  margin:0;
+  padding:0;
+}
+
+.preview .extended-content {
+  transition:height 1s;
+  height:0px;
+  overflow:hidden;
+  width:100%;
+}
+
+.preview .extended-content p {
+  margin:0;
+  padding:0;
+}
+
+.preview.reveal .extended-content {
+  height:auto;
+}
+
+/* ACTIVITY LIST FILTERS
+-----------------------------------------------------------------------------*/
+.friends-activity-filters {
+  line-height:1.2em;
+  background:#fff;
+  padding:0;
+  font-size:.75em;
+  float:right;
+  position:absolute;
+  top:.25em;
+  right:.25em;
+  z-index:510;
+  border:2px solid rgba(108,192,105,1);
+  border-radius:8px;
+}
+
+.filters-menu-btn:before {
+  display:block;
+  position:relative;
+  text-align:right;
+  float:right;
+  top:0;
+  right:0;
+  z-index:501;
+  padding:.125em .25em;
+  font-size:1.5em;
+  color:rgba(108,192,105,1);
+  text-decoration:none;
+}
+.filters-menu-btn:hover {
+  text-decoration:none;
+}
+
+.friends-activity-filters ul {
+  padding:1.25em 1em .75em 1em;
+  margin:0;
+  list-style:none;
+  display:none;
+  position:relative;
+  z-index:500;
+}
+.friends-activity-filters.toggle-on ul {
+  display:block;
+}
+
+.friends-activity-filters ul li {
+  border-bottom:1px solid black;
+  padding-bottom:.25em;
+  margin-bottom:.25em;
+  white-space:nowrap;
+}
+
+.friends-activity-filters ul li:last-child {
+  border-bottom:none;
+  margin:0;
+  padding:0;
+}
+
+.friends-activity-filter, .friends-activity-filter:hover,
+.friends-activity-filter-all, .friends-activity-filter-all:hover {
+  font-family:FontAwesome;
+  color:rgba(108,192,105,1);
+  text-decoration:none;
+}
+
+.friends-activity-filter:before {
+  padding:0 .25em;
+}
+
+.friends-activity-filter-all {
+  padding-left:1.25em;
+}
+
+
+
+/* UTILITY
+-----------------------------------------------------------------------------*/
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

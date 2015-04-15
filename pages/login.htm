@@ -10,7 +10,7 @@ title = "What is DMA Friends?"
 partial = "whatisthis"
 
 [UserLogin]
-redirect = "friends"
+redirect = "home"
 ==
 <?php
 use DMA\Friends\Classes\LocationManager;
@@ -18,7 +18,7 @@ use DMA\Friends\Classes\LocationManager;
 function onStart()
 {
     if (Auth::getUser()) {
-        return Redirect::to('friends');
+        return Redirect::to('home');
     }
 
     $this['location'] = LocationManager::getLocation();

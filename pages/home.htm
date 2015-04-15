@@ -1,0 +1,27 @@
+title = "Home"
+url = "/home"
+layout = "default"
+description = "Home — Recommendation List"
+hidden = "0"
+
+[ActivityCodeForm]
+
+[Recommendations 'activitylist']
+recommend = "activity"
+ifEmpty = "weight"
+limit = "12"
+
+[ActivityFilters]
+target_component = 'activitylist'
+==
+<?php 
+?>
+==
+
+<div class="hideform">{% component 'ActivityCodeForm' %}</div>
+
+{% component 'ActivityFilters' %}
+
+<h3>Recommended Activities</h3>
+{% component 'activitylist' %}
+
