@@ -13,15 +13,12 @@ partial = "whatisthis"
 redirect = "home"
 ==
 <?php
-use DMA\Friends\Classes\LocationManager;
-
 function onStart()
 {
     if (Auth::getUser()) {
         return Redirect::to('home');
     }
 
-    $this['location'] = LocationManager::getLocation();
 }
 ?>
 ==
@@ -29,10 +26,6 @@ function onStart()
     <div class="login-box">
         <div class="dma-logo">{% component 'WhatsThisModal' %}</div>
 
-        <div class="info">{% component 'UserLogin' %}</div
-    </div>
-
-    <div class="location-info footer">
-        <h4 class="icon-map-marker">{{ location.title }}</h4>
+        <div class="info">{% component 'UserLogin' %}</div>
     </div>
 </div>
