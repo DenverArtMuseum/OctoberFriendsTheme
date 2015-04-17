@@ -46,7 +46,7 @@ body.full-res {
   zoom: 1 !important;
   text-rendering: optimizeLegibility; }
 
-blockquote, input, select, textarea, button, .button {
+input, select, textarea, button, .button {
   background: #fff;
   color: #8d7c75;
   font-family: Verdana, sans-serif;
@@ -62,14 +62,14 @@ p {
 
 input[type="button"], input[type="submit"], button, select, .button, .button:hover {
   text-decoration: none;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  border-radius: 6px;
-  padding: 20px 20px 18px;
+  -webkit-border-radius: .375em;
+  -moz-border-radius: .375em;
+  -ms-border-radius: .375em;
+  -o-border-radius: .375em;
+  border-radius: .375em;
+  padding:.6em .5em .75em;
   text-align: center;
-  border: none;
+  border: thin solid #8d7c75;
   cursor: pointer;
 }
 
@@ -181,7 +181,31 @@ blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:
 -----------------------------------------------------------------------------*/
 
 
+/* LOGIN & REGISTRATION
+-----------------------------------------------------------------------------*/
+.login-content {
+  margin:1em auto;
+  padding:1em;
+  width:80%;
+  background:#ffffff;
+  border-radius:8px;
+}
 
+.login-header {
+
+}
+
+.login-modal-triggers {
+  text-alignment:center;
+}
+
+.login-modal-triggers .button {
+  width:40%;
+}
+
+.login-link {
+  float:right;
+}
 
 /* ACTIVITY LIST
 -----------------------------------------------------------------------------*/
@@ -329,12 +353,11 @@ blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:
   overflow: hidden;
 }
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1050;
+  left:0;
+  width:100%;
+  z-index: 1500;
   display: none;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
@@ -374,7 +397,7 @@ blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
-.modal-backdrop {
+.modal-backdrop, .popup-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -383,11 +406,11 @@ blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:
   z-index: 1040;
   background-color: #000;
 }
-.modal-backdrop.fade {
+.modal-backdrop.fade, .popup-backdrop.fade {
   filter: alpha(opacity=0);
-  opacity: 0;
+  opacity: 0.5;
 }
-.modal-backdrop.in {
+.modal-backdrop.in, .popup-backrop.in {
   filter: alpha(opacity=50);
   opacity: .5;
 }
@@ -422,13 +445,7 @@ blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:
 .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
-.modal-scrollbar-measure {
-  position: absolute;
-  top: -9999px;
-  width: 50px;
-  height: 50px;
-  overflow: scroll;
-}
+
 @media (min-width: 768px) {
   .modal-dialog {
     width: 600px;
