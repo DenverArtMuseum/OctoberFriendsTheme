@@ -24,7 +24,7 @@
             	$('#carousel-register').carousel('next');
              });
         
-        //Stop button of triggeting next slice in the carousel
+        //Stop button of triggering next slice in the carousel
         e.preventDefault();
         e.stopPropagation();
 	

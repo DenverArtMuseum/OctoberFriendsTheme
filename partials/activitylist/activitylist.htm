@@ -1,26 +1,37 @@
-<div class="friends-filtered-activity-list">
+<ol class="rover-filtered-activity-list">
     {% for activity in activities %}
-    <div class="friends-activity preview" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
-        <a class="do-btn icon-plus-square-o" href="#" data-activity-code="{{activity.activity_code}}"></a>
-        {% if activity.image.path %}
-            <img src="{{activity.image.path}}" />
-        {% else %}
-            <img src="" />
-        {% endif %}
-        <h3>{{ activity.title }}</h3>
-        <div class="activity-time">
-            <span class="activity-duration icon-spinner">{{ activity.activity_fields.duration }}</span>
-            {% if activity.activity_fields.start_time != "00:00" %}
-                <span class="activity-start-time icon-clock-o">{{ activity.activity_fields.start_time }}</span>
-            {% endif %}
+    <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
+        <div class="buttons">
+            <a class="ignore-btn" href="#" data-activity-code="{{activity.activity_code}}">Remove</a>
+            <a class="do-btn" href="#" data-activity-code="{{activity.activity_code}}">Complete</a>
         </div>
-        <div class="activity-location">
-            <span class="icon-map-marker">{{ activity.activity_fields.location }}</span>
+        <div class="rover-activity preview">
+            <div class="image-container">
+                {% if activity.image.path %}
+                    <img src="{{activity.image.path}}" />
+                {% else %}
+                    <img src="" />
+                {% endif %}
+            </div>
+            <div class="details">
+                <h3>{{ activity.title }}</h3>
+                <div class="activity-time">
+                    <span class="activity-duration icon-spinner">{{ activity.activity_fields.duration }}</span>
+                    {% if activity.activity_fields.start_time != "00:00" %}
+                        <span class="activity-start-time icon-clock-o">{{ activity.activity_fields.start_time }}</span>
+                    {% endif %}
+                </div>
+                <div class="activity-location">
+                    <span class="icon-map-marker">{{ activity.activity_fields.location }}</span>
+                </div>
+                <div class="extended-content">
+                    {{ activity.description|raw }}
+                </div>
+            </div>
         </div>
-        <div class="extended-content">
-            {{ activity.description|raw }}
-        </div>
-    </div>
+    </li>
     {% endfor %}
-</div>
+</ol>
+{% if links %}
 <div class="links">{{ links|raw }}</div>
+{% endif %}

@@ -1,21 +1,22 @@
-<div class="friends-activity-filters">
-    <a href="#" class="icon-filter filters-menu-btn"></a>
+<div class="rover-activity-filters friends-activity-filters group">
+    <a href="#" class="rover-filters-menu-btn on">Filters</a>
+    <a href="#" class="rover-filters-menu-btn icon-close off"></a>
     <ul
-        class="friends-activity-filters-list"
+        class="rover-activity-filters-list friends-activity-filters-list"
         data-filter-element="{{ element }}"
         data-filter-partial="{{ partial }}"
         data-filter-component="{{ component }}"
     >
-        <li class="friends-activity-filters-item">
-            <a href="#" class="friends-activity-filter-all"
+        <li class="rover-activity-filters-item friends-activity-filters-item">
+            <a href="#" class="rover-activity-filter-all friends-activity-filter-all"
                 data-request="onUpdate"
                 data-request-data="filter: 'all'"
             >View All</a>
         </li>
         {% for category in categories %}
-            <li class="friends-activity-filters-item">
+            <li class="rover-activity-filters-item friends-activity-filters-item">
                 <a href="#"
-                    class="friends-activity-filter active"
+                    class="rover-activity-filter friends-activity-filter active"
                     data-filter-name="{{ category.name }}"
                 >{{ category.name }}</a>
             </li>

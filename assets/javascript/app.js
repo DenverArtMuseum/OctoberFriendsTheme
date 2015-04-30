@@ -1,4 +1,135 @@
+var Rover = {};
+
+Rover.prepareActivityList = function () {
+
+  // Get the activity for the targeted element in an event
+  function getActivity(event) {
+    var activity = event.target;
+
+    if (!activity.classList.contains('rover-activity')) {
+      while ((activity = activity.parentElement) && !activity.classList.contains('rover-activity'));
+    }
+
+    return activity;
+  }
+
+  // Get the pixel width of the associated buttons container for an activity
+  function getButtonsWidth(activity) {
+    var listItem = activity.parentElement;
+
+    if (!listItem.classList.contains('rover-activity-list-item')) {
+      while ((listItem = listItem.parentElement) && !listItem.classList.contains('rover-activity-list-item'));
+    }
+
+    var buttons =  listItem.querySelector('.buttons');
+
+    return buttons.offsetWidth;
+  }
+
+  function dragActivity(event) {
+    var activity = getActivity(event);
+
+    var delta = Math.abs(event.deltaX);
+
+    activity.style.right = delta + 'px';
+
+    var buttons = getButtonsWidth(activity);
+
+    if (delta > buttons) {
+      activity.style.right = buttons + 'px';
+    }
+  }
+
+  function dragStopActivity(event) {
+    var activity = getActivity(event);
+
+    var delta = parseInt(activity.style.right, 10);
+
+    var buttons = getButtonsWidth(activity);
+
+    if (delta < buttons) {
+      resetActivity(event);
+    }
+
+  }
+
+  function revealActivityButtons(event) {
+    var activity = getActivity(event);
+
+    var buttons = getButtonsWidth(activity);
+    activity.style.right = buttons + 'px';
+  }
+
+  function resetActivity(event) {
+    var activity = getActivity(event);
+
+    var delta = parseInt(activity.style.right, 10);
+
+    coverButtons(activity, delta);
+  }
+
+  function toggleDetails(event) {
+    var activity = getActivity(event);
+
+    if (activity.classList.contains('reveal')) {
+      activity.classList.remove('reveal');
+    }
+    else {
+      activity.classList.add('reveal');
+    }
+  }
+
+  function coverButtons(activity, delta) {
+    var speed = 5;
+
+    if (delta <= speed) {
+      delta = 0;
+    }
+    else {
+      delta -= speed;
+    }
+
+    activity.style.right = delta + 'px';
+    
+    if (delta > 0) {
+      setTimeout(function() {
+        coverButtons(activity, delta);
+      })
+    }
+  }
+
+  function prepareActivity(activity) {
+    var activityControl = new Hammer(activity);
+
+    activityControl.on('tap', toggleDetails);
+    activityControl.on('panleft', dragActivity);
+    activityControl.on('panright', resetActivity);
+    activityControl.on('panend', dragStopActivity);
+    activityControl.on('swipeleft', revealActivityButtons);
+  }
+
+  var activities = document.querySelectorAll('.rover-activity');
+  for (var i = 0; i < activities.length; i += 1) {
+    prepareActivity(activities[i]);
+  }
+};
+
+Rover.prepActivitiesWhenReady = function () {
+  document.addEventListener("DOMContentLoaded", Rover.prepareActivityList);
+
+  var container = document.querySelectorAll('.rover-filtered-activity-list');
+
+  // Have to use jQuery for this next line
+  // October AJAX events can't be caught by addEventListener
+  $('.rover-filtered-activity-list').parent().on('ajaxUpdate', function(e){ Rover.prepareActivityList(); });
+};
+
+Rover.prepActivitiesWhenReady();
+
 (function($) {
+
+  // Submit activity code when "do" button used
+  // Should be replaced with an API call at some point
   $('a.do-btn').click(function (){
     var code = $(this).data('activity-code');
     var input = $('input#activity-code');
@@ -21,30 +152,20 @@
     }
   });
 
-  //var active_filters = [];
-
+  // Show/Hide checkmark on filter when selected/deselected
   $('a.friends-activity-filter').click(function () {
-    // remove this line when AJAX works on Recommendations
-    //var slug = $(this).data('filter-name');
 
     if ($(this).hasClass('icon-square-o')) {
       $(this).removeClass('icon-square-o').addClass('icon-check-square-o');
-      // remove these two lines when AJAX works on Recommendations
-      //var position = $.inArray(slug, active_filters);
-      //if ( ~position ) active_filters.splice(position, 1); 
     }
     else {
       $(this).removeClass('icon-check-square-o').addClass('icon-square-o');
-      // remove this line when AJAX works on Recommendations
-      //active_filters.push(slug);
     }
-
-    // remove this line when AJAX works on Recommendations
-    //updateRecommendationListFilters(active_filters)
 
     return false;
   });
 
+  // Reset checkmark on filters when select all is clicked
   $('a.friends-activity-filter-all').click(function () {
     $('a.friends-activity-filter').each(function () {
       if ($(this).hasClass('icon-square-o')) {
@@ -55,59 +176,31 @@
   });
 
   // Reveal/Hide filters menu on menu button click
-  $('a.filters-menu-btn').click(function () {
+  $('a.rover-filters-menu-btn').click(function () {
     var menubutton = $(this);
     var filters = menubutton.parent();
 
     if (filters.hasClass('toggle-on')) {
       filters.removeClass('toggle-on');
-      menubutton.removeClass('icon-close').addClass('icon-filter');
+      $('#rover-modal-background').fadeOut('fast').remove();
     }
     else {
+      $('body').append('<div id="rover-modal-background"></div>');
+      $('#rover-modal-background').css('position', 'fixed')
+        .hide()
+        .css('top', 0)
+        .css('left', 0)
+        .css('bottom', 0)
+        .css('right', 0)
+        .css('z-index', 599)
+        .css('background-color', '#000')
+        .fadeTo('fast',.5);
       filters.addClass('toggle-on');
-      menubutton.removeClass('icon-filter').addClass('icon-close');
     }
 
     return false;
   });
 
   /* END FILTER THEME TWEAKS */
-
-
-  /* BEGIN EXTENDED CONTENT INTERACTIONS */
-  $('.friends-activity.preview').click(function() {
-    toggleExtendedContent($(this));
-  });
-
-  // CSS transitions don't work on box size properties without explicit lengths or percentages
-  // Consequently, we'll probably have to rewrite this using jquery transitions
-  function toggleExtendedContent(activity) {
-    if (activity.hasClass('reveal')) {
-      activity.removeClass('reveal');
-    }
-    else {
-      activity.addClass('reveal');
-    }
-  }
-
-  /* END EXTENDED CONTENT INTERACTIONS */
-
-  /**
-   * Cheater function. Demo only. Will be replaced with actual AJAX in final product
-   */
-  function updateRecommendationListFilters(active_filters) {
-    $('.friends-activity.preview').each(function () {
-      var activity = $(this);
-      var categories = $(this).data('categories').split(' ');
-
-      if (activity.hasClass('filtered')) activity.removeClass('filtered');
-
-      active_filters.forEach(function(entry) {
-        if (!$.inArray(entry, categories)) {
-          activity.addClass('filtered');
-        }
-      });
-    }); 
-  }
 
 })(jQuery);
