@@ -1,3 +1,9 @@
+==
+<?php
+function onStart() {
+}
+?>
+==
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,27 +42,26 @@
             'assets/vendor/jquery-ui/jquery-ui.css',
             'assets/vendor/jquery-ui/jquery-ui.structure.css',
             'assets/vendor/jquery-ui/jquery-ui.theme.css',
-            'assets/css/style.css',
-            'assets/css/icon.css'
+            'assets/css/style.css'
         ]|theme }}" rel="stylesheet">
     </head>
     <body class="full-res {{ this.page.baseFileName }}">
-
+{% partial 'icons' %}
     <!-- Header -->
     <header id="layout-header">
         {% if user %}
             <nav class="clearfix primary-links">
             <div class="item">
-                <a class="icon-thumbs-up" href="/home">Recommend</a>
+                <a class="icon-home" href="/home"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'home' %}#icon-star-full{% else %}#icon-star-empty{% endif %}"></use></svg>Recommend</a>
             </div>
             <div class="item">
-                <a class="icon-user" href="/profile">My Profile</a>
+                <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="#icon-user-hollow"></use></svg>My Profile</a>
             </div>
             <div class="item">
-                <a class="icon-compass" href="/explore">Explore</a>
+                <a class="icon-explore" href="/explore"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>
             </div>
             <div class="item">
-                <a class="icon-sign-out" href="/logout">Sign Out</a>
+                <a class="icon-signout" href="/logout"><svg class="svg-icon nav"><use xlink:href="#icon-signout"></use></svg>Sign Out</a>
             </div>
             </ul>
         </nav>

@@ -159,7 +159,7 @@ fieldset {
   float:right;
 }
 
-/* HEADER
+/* HEADER/NAV
 -----------------------------------------------------------------------------*/
 .primary-links {
   -webkit-text-size-adjust: 100%;
@@ -169,6 +169,7 @@ fieldset {
   position:fixed;
   bottom:0;
   z-index:900;
+  border-top: 1px solid rgba(190,190,190,1);
 }
 
 .primary-links .item {
@@ -187,14 +188,22 @@ fieldset {
   padding:.25em;
   height: 100%;
   background: #fff;
-  color: rgba(108,192,105,1);
-  border: 1px solid rgba(108,192,105,1);
+  color: rgba(190,190,190,1);
   text-decoration: none;
 }
 
 
 /* FLASH MESSAGES
 -----------------------------------------------------------------------------*/
+
+
+/* TABS
+-----------------------------------------------------------------------------*/
+.ui-widget {}
+.ui-widget-content {}
+.ui-widget-header {}
+
+
 
 
 /* LOGIN & REGISTRATION
@@ -560,6 +569,39 @@ a.ignore-btn {
   }
 }
 
+/* ICONS (SVG)
+-----------------------------------------------------------------------------*/
+.svg-icon {
+  width:1.2em; /* TODO: explicitly set this to line-height */
+  height:1.2em;
+  fill:#333; /* TODO: set this to font colot */
+}
+
+.svg-icon.inline {
+  margin-right:.25em;
+}
+
+.svg-icon.nav {
+  width:2.75em;
+  height:2.75em;
+  fill:#999;
+  display:block;
+  margin:0 auto;
+}
+
+body.home .icon-home, body.home .icon-home .svg-icon {
+  color:#6cc069;
+  fill:#6cc069;
+}
+
+body.explore .icon-explore, body.explore .icon-explore .svg-icon {
+  color:#6cc069;
+  fill:#6cc069;
+}
+
+body.explore .icon-explore .svg-icon .highlight {
+  fill:#BE3527;
+}
 
 /* UTILITY
 -----------------------------------------------------------------------------*/
@@ -567,6 +609,12 @@ a.ignore-btn {
   content: "";
   display: table;
   clear: both;
+}
+
+.visually-hidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 
 /* CAROUSEL (from bootstrap)
