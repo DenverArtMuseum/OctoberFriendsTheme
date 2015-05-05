@@ -4,9 +4,9 @@ layout = "login"
 hidden = "0"
 
 [Modal WhatsThisModal]
-linkTitle = "<span class="icon-question-circle">What is this?</span>"
+linkTitle = "<span class="icon-question-circle">What is Rover?</span>"
 linkClasses = "help small pop"
-title = "What is DMA Friends?"
+title = "What is Rover?"
 partial = "whatisthis"
 
 [UserLogin]
@@ -22,5 +22,6 @@ function onStart()
 }
 ?>
 ==
+<img class="login-logo" src="{{ 'assets/images/logo.svg'|theme }}" alt="Rover" />
 <div class="login-header">{% component 'WhatsThisModal' %}</div>
 <div class="login-modal-triggers">{% component 'UserLogin' %}</div>

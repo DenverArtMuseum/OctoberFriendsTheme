@@ -15,15 +15,12 @@ limit = "12"
 [ActivityFilters]
 target_component = 'activitylist'
 ==
-<?php 
-?>
+
 ==
-
-<div class="hideform">{% component 'ActivityCodeForm' %}</div>
-
-{% component 'ActivityFilters' %}
-
-<h1>Rover Recommends</h1>
+{% put head %}
+    {% component 'ActivityFilters' %}
+    <h1><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /> Recommendations</h1>
+{% endput %}
 
 {% component 'activitylist' %}
-
+<div class="hideform">{% component 'ActivityCodeForm' %}</div>

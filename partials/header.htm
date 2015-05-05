@@ -6,64 +6,64 @@ function onStart() {
 ==
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Friends - {{ this.page.title }}</title>
+<head>
+    <title>Friends - {{ this.page.title }}</title>
 
-        <link rel="Shortcut Icon" href="{{ 'assets/images/favicon.ico'|theme }}" type="image/x-icon">
-        <meta name="author" content="Dallas Museum of Art">
-        <meta name="robots" content="noindex,follow">
+    <link rel="Shortcut Icon" href="{{ 'assets/images/favicon.ico'|theme }}" type="image/x-icon">
+    <meta name="author" content="Dallas Museum of Art">
+    <meta name="robots" content="noindex,follow">
 
 
-        <!-- include apple icons and splash screens -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- include apple icons and splash screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
 
-        <!-- iPad -->
-        <link href="{{ 'assets/images/apple-touch-icon-72x72.png'|theme }}" sizes="72x72" rel="apple-touch-icon">
-        <link href="{{ 'assets/images/apple-touch-startup-image-768x1004.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
-                 and (orientation: portrait)
-                 and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-        <link href="{{ 'assets/images/apple-touch-startup-image-748x1024.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
-                 and (orientation: landscape)
-                 and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <!-- iPad -->
+    <link href="{{ 'assets/images/apple-touch-icon-72x72.png'|theme }}" sizes="72x72" rel="apple-touch-icon">
+    <link href="{{ 'assets/images/apple-touch-startup-image-768x1004.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <link href="{{ 'assets/images/apple-touch-startup-image-748x1024.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
 
-        <!-- iPad (Retina) -->
-        <link href="{{ 'assets/images/apple-touch-icon-144x144.png'|theme }}" sizes="144x144" rel="apple-touch-icon">
-        <link href="{{ 'assets/images/apple-touch-startup-image-1536x2008.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
-                 and (orientation: portrait)
-                 and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-        <link href="{{ 'assets/images/apple-touch-startup-image-1496x2048.png'|theme}}" media="(device-width: 768px) and (device-height: 1024px)
-                 and (orientation: landscape)
-                 and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPad (Retina) -->
+    <link href="{{ 'assets/images/apple-touch-icon-144x144.png'|theme }}" sizes="144x144" rel="apple-touch-icon">
+    <link href="{{ 'assets/images/apple-touch-startup-image-1536x2008.png'|theme }}" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="{{ 'assets/images/apple-touch-startup-image-1496x2048.png'|theme}}" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
-        <link rel="icon" type="image/png" href="{{ 'assets/images/logo.png'|theme }}" />
-        <script src="//use.typekit.net/btu5tkf.js"></script>
-        <script>try{Typekit.load();}catch(e){}</script>
-        {% styles %}
-        <link href="{{ [
-            'assets/css/style.css'
-        ]|theme }}" rel="stylesheet">
-    </head>
-    <body class="full-res {{ this.page.baseFileName }}">
-{% partial 'icons' %}
-    <!-- Header -->
-    <header id="layout-header">
+    <link rel="icon" type="image/png" href="{{ 'assets/images/logo.png'|theme }}" />
+    <script src="//use.typekit.net/btu5tkf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    {% styles %}
+    <link href="{{ [
+        'assets/css/style.css'
+    ]|theme }}" rel="stylesheet">
+</head>
+<body class="full-res {{ this.page.baseFileName }}">
+    {% partial 'icons' %}
+    <header id="layout-header" class="page-head container">
+        {% placeholder head %}
         {% if user %}
             <nav class="clearfix primary-links">
-            <div class="item">
-                <a class="icon-home" href="/home"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'home' %}#icon-star-full{% else %}#icon-star-empty{% endif %}"></use></svg>Recommend</a>
-            </div>
-            <div class="item">
-                <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'profile' %}#icon-user-full{% else %}#icon-user-empty{% endif %}"></use></svg>My Profile</a>
-            </div>
-            <div class="item">
-                <a class="icon-explore" href="/explore"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>
-            </div>
-            <div class="item">
-                <a class="icon-signout" href="/logout"><svg class="svg-icon nav"><use xlink:href="#icon-signout"></use></svg>Sign Out</a>
-            </div>
-            </ul>
-        </nav>
+                <div class="item">
+                    <a class="icon-home" href="/home"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'home' %}#icon-star-full{% else %}#icon-star-empty{% endif %}"></use></svg>Recommend</a>
+                </div>
+                <div class="item">
+                    <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'profile' %}#icon-user-full{% else %}#icon-user-empty{% endif %}"></use></svg>My Profile</a>
+                </div>
+                <div class="item">
+                    <a class="icon-explore" href="/explore"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>
+                </div>
+                <div class="item">
+                    <a class="icon-signout" href="/logout"><svg class="svg-icon nav"><use xlink:href="#icon-signout"></use></svg>Sign Out</a>
+                </div>
+                </ul>
+            </nav>
         {% endif %}
     </header>
 

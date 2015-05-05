@@ -8,11 +8,11 @@ hidden = "0"
 [ActivityFilters]
 target_component = "activitylist"
 ==
-<?php
 
-?>
 ==
-{% component 'ActivityFilters' %}
-<h1>Explore Activities</h1>
+{% put head %}
+    {% component 'ActivityFilters' %}
+    <h1><a href="/home" title="Home"><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /></a> Explore</h1>
+{% endput %}
 
 {% component 'activitylist' %}
