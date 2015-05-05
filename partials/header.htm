@@ -37,11 +37,10 @@ function onStart() {
                  and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
         <link rel="icon" type="image/png" href="{{ 'assets/images/logo.png'|theme }}" />
+        <script src="//use.typekit.net/btu5tkf.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
         {% styles %}
         <link href="{{ [
-            'assets/vendor/jquery-ui/jquery-ui.css',
-            'assets/vendor/jquery-ui/jquery-ui.structure.css',
-            'assets/vendor/jquery-ui/jquery-ui.theme.css',
             'assets/css/style.css'
         ]|theme }}" rel="stylesheet">
     </head>
@@ -55,7 +54,7 @@ function onStart() {
                 <a class="icon-home" href="/home"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'home' %}#icon-star-full{% else %}#icon-star-empty{% endif %}"></use></svg>Recommend</a>
             </div>
             <div class="item">
-                <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="#icon-user-hollow"></use></svg>My Profile</a>
+                <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'profile' %}#icon-user-full{% else %}#icon-user-empty{% endif %}"></use></svg>My Profile</a>
             </div>
             <div class="item">
                 <a class="icon-explore" href="/explore"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>

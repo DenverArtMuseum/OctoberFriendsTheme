@@ -1,0 +1,15 @@
+<ul class="activity-log">
+    {% for result in results %}
+        <li class="logged-activity">
+            <span class="time-ago">{{ result.timeAgo }}:</span>
+            {% if result.action == 'activity' %}
+                You completed the activity
+                "{{ result.object.title }}"
+            {% elseif result.action == 'artwork' %}
+                Liked a work of art
+                {{ result.artwork_id }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+<div class="links">{{ links|raw }}</div>

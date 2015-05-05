@@ -1,0 +1,176 @@
+<form id="user-profile" class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="form-group is-required">
+            <label>First Name</label>
+            <input type="text" 
+                name="metadata[first_name]" 
+                class="form-control" 
+                value="{{ user.metadata.first_name }}" 
+                data-parsley-required="true" 
+                data-parsley-minlength="2"
+            />
+        </div>
+        <div class="form-group is-required">
+            <label>Last Name</label>
+            <input type="text" 
+                name="metadata[last_name]" 
+                class="form-control is-required" 
+                value="{{ user.metadata.last_name }}"
+                data-parsley-required="true" 
+                data-parsley-minlength="2"
+            />
+        </div>
+        <div class="form-group is-required">
+            <label>Email</label>
+            <input type="text" 
+                name="email" 
+                class="form-control"  
+                value="{{ user.email }}"
+                data-parsley-required="true"
+                data-parsley-type="email"
+            />
+        </div>
+        <div class="form-group">
+            <a href="#" data-control="popup" data-handler="onPassword">Change Password</a>
+        </div>
+         <div class="form-group">
+                <input type="checkbox" id="metadata[email_optin]" name="metadata[email_optin]" value="1" 
+                {% if user.metadata.email_optin %}
+                    checked="checked"
+                {% endif %}
+                />
+                <label for="metadata[email_optin]">Email Opt-in
+            </label>
+        </div>
+
+        <h3>Contact Information</h3>
+
+        <div class="form-group">
+            <label>Street Address</label>
+            <input type="text" name="street_addr" class="form-control"  value="{{ user.street_addr }}"/>
+        </div>
+
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" name="city" class="form-control"  value="{{ user.city }}"/>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>State</label>
+                <select
+                    id="state"
+                    name="state"
+                    class="form-control custom-select">
+                        <option> - Select a State - </option>
+                    {% for state in options.states %}
+                        <option
+                        {% if state.id == user.state.id %}
+                        selected="selected"
+                        {% endif %}
+                        value="{{ state.id }}">
+                        {{state.name}}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group is-required col-md-6">
+                <label>Zipcode</label>
+                <input type="text" 
+                    name="zip" 
+                    class="form-control"  
+                    value="{{ user.zip }}"
+                    data-parsley-type="number"
+                    data-parsley-required="true"
+                    data-parsley-length="[5, 5]"
+                    data-parsley-error-message="Please enter a valid zipcode"
+                />
+            </div>
+        </div>
+
+        <div class="form-group text-field">
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ user.phone }}" class="form-control"/>   
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+
+        <h3>Demographic Information</h3>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select id="gender" name="metadata[gender]" class="form-control">
+                <option value="">Choose not to disclose</option>
+                {% for option in options.gender %}
+                <option
+                {% if option == user.metadata.gender %}
+                selected="selected"
+                {% endif %}
+                >{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Race</label>
+            <select name="metadata[race]" class="form-control">
+                <option value=""> - Select One - </option>
+                {% for option in options.race %}
+                <option
+                {% if option == user.metadata.race %}
+                selected="selected"
+                {% endif %}
+                >{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Education</label>
+            <select name="metadata[education]" class="form-control">
+                <option value=""> - Select One - </option>
+                {% for option in options.education %}
+                <option
+                {% if option == user.metadata.education %}
+                selected="selected"
+                {% endif %}
+                >{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Household Income</label>
+            <select name="metadata[household_income]" class="form-control">
+                <option value=""> - Select One - </option>
+                {% for option in options.household_income %}
+                <option
+                {% if option == user.metadata.household_income %}
+                selected="selected"
+                {% endif %}
+                >{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Number of people in your household</label>
+            <select name="metadata[household_size]" class="form-control">
+                <option value=""> - Select One - </option>
+                {% for i in 0..9 %}
+                <option
+                {% if i == user.metadata.household_size %}
+                selected="selected"
+                {% endif %}
+                >{{ i }}</option>
+                {% endfor %}
+                <option>10+</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="col-md-12 col-sm-12">
+        <button type="submit" data-request="onSave" class="btn btn-primary">Save</button>
+    </div>
+</form>

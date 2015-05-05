@@ -140,43 +140,8 @@ Rover.prepActivitiesWhenReady();
 
   /* BEGIN FILTER THEME TWEAKS */
 
-  // Initialize icon state of each filter
-  $('a.friends-activity-filter').each(function() {
-    var link = $(this);
-
-    if (link.hasClass('active')) {
-      link.addClass('icon-check-square-o');
-    }
-    else {
-      link.addClass('icon-square-o');
-    }
-  });
-
-  // Show/Hide checkmark on filter when selected/deselected
-  $('a.friends-activity-filter').click(function () {
-
-    if ($(this).hasClass('icon-square-o')) {
-      $(this).removeClass('icon-square-o').addClass('icon-check-square-o');
-    }
-    else {
-      $(this).removeClass('icon-check-square-o').addClass('icon-square-o');
-    }
-
-    return false;
-  });
-
-  // Reset checkmark on filters when select all is clicked
-  $('a.friends-activity-filter-all').click(function () {
-    $('a.friends-activity-filter').each(function () {
-      if ($(this).hasClass('icon-square-o')) {
-        $(this).removeClass('icon-square-o').addClass('icon-check-square-o');
-      }
-    });
-
-  });
-
   // Reveal/Hide filters menu on menu button click
-  $('a.rover-filters-menu-btn').click(function () {
+  $('.rover-filters-menu-btn').click(function () {
     var menubutton = $(this);
     var filters = menubutton.parent();
 

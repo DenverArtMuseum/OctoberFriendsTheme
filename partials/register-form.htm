@@ -14,153 +14,135 @@ function onStart() {
 }
 ?>
 ==
-<form id="register" method="POST" data-request="onRegisterSubmit">
-<div id="carousel-register" class="registration-carousel carousel slide" data-ride="carousel">
-<div class="carousel-inner" role="listbox">
-    <div class="item item-1 active">
-        <div class="registration-step">Step 1 of 3</div>
-        <h3>Basic Info</h3>
-        <p>
-        You are signing up for DAM Rover. Once you complete the registration process, you will be ready to see the activities that are waiting for you. As you participate, we'll get a clearer idea of what you like and recommend more activities for you based on what you've already done.
-        </p>
-        <div class="form-group is-required">
-            <label>First Name</label>
-            <input type="text" 
-                id="first-name" 
-                name="first_name" 
-                class="form-control" 
-                data-parsley-required="true" 
-                data-parsley-minlength="2"
-                data-parsley-group="block0"
-            />
-        </div>
-        <div class="form-group is-required">
-            <label>Last Name</label>
-            <input type="text" 
-                id="last-name" 
-                name="last_name" 
-                class="form-control" 
-                data-parsley-required="true" 
-                data-parsley-minlength="2"
-                data-parsley-group="block0"
-            />
-        </div>
-
-        <div class="form-group is-required col-md-6 col-sm-6">
-            <label>Date of Birth</label>
-            <select name="birthday[month]" id="month">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">Decemember</option>
-            </select>
-
-            <select name="birthday[day]" id="day">
-                {{ days|raw }}
-            </select>
-
-            <select name="birthday[year]" id="year">
-                {{ years|raw }}
-            </select>
-        </div>
-
-        <div class="form-group col-md-6 col-sm-6">
-            <label>Zip</label>
-            <input type="text" 
-                name="zip" 
-                class="form-control" 
-                data-parsley-type="number"
-                data-parsley-required="false"
-                data-parsley-length="[5, 5]"
-                data-parsley-error-message="Please enter a valid zipcode"
-                data-parsley-group="block0"
-            />
-        </div>
-    </div>
-
-    <div class="item item-2">
-        <div class="registration-step">Step 2 of 3</div>
-        <h3>Account information</h3>
-        <p>
-We will use your e-mail address consistent with our privacy policy to send you messages concerning your DAM Next membership.
-        </p>
-        <div class="form-group is-required">
-            <label>Email</label>
-            <input type="email" 
-                id="email" 
-                name="email" 
-                class="form-control"
-                data-parsley-required="true"
-                data-parsley-type="email"
-                data-parsley-group="block1"
-                data-parsley-remote
-                data-parsley-remote-validator="validateUsername"
-                data-parsley-trigger="change focusout"
-                data-parsley-remote-message="A user with this email address already exists."
-                data-parsley-remote-options='{ "type": "POST", "dataType": "json", "headers": {	"X-OCTOBER-REQUEST-HANDLER": "onAvailableUser", "X-OCTOBER-REQUEST-PARTIALS":"" }}'
-                />
-        </div>
-        <div class="form-group">
-            <label>
-                <input type="checkbox" name="email_optin" value="1" checked="checked"/> 
-                Please send me e-mail concerning other DMA news, events, and offerings. I understand I may unsubscribe later if I choose to do so.
-            </label>
-        </div>
-        <div class="form-group is-required">
-            <label class="control-label" for="password">Password</label>
-            <input 
-                id="password" 
-                type="password" 
-                name="password" 
-                class="form-control" 
-                data-parsley-required="true"
-                data-parsley-minlength="6"
-                data-parsley-group="block2"
-            />
-        </div>
-        <div class="form-group is-required">
-            <label class="control-label" for="password-confirmation">Password Confirm</label>
-            <input 
-                id="password-confirmation" 
-                type="password" 
-                name="password_confirmation" 
-                class="form-control" 
-                data-parsley-required="true"
-                data-parsley-minlength="6"
-                data-parsley-equalto="#password"
-                data-parsley-group="block2"
-            />
-        </div>
-        <input type="hidden" name="phone" value="555 555-5555" class="form-control" />
-        <input type="hidden" name="street_addr" value="" class="form-control" />
-        <input type="hidden" name="city" value="" class="form-control" />
-        <input type="hidden" name="state" value="" class="form-control" />
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="item item-3">
-        <div class="registration-step">Step 3 of 3</div>
-        <div class="terms">
-            {% partial 'terms-and-conditions' %}
+<form id="register" method="POST" class="group" data-request="onRegisterSubmit">
+    <div id="carousel-register" class="registration-carousel carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item item-1 active">
+                <div class="registration-step">Registration step 1 of 3</div>
+                <h3>Basic Info</h3>
+                <p>
+                    You are signing up for DAM Rover. Once you complete the registration process, you will be ready to see the activities that are waiting for you.
+                </p>
+                <div class="form-group is-required">
+                    <label for="first-name">First Name:</label>
+                    <input type="text"
+                        id="first-name"
+                        name="first_name"
+                        class="form-control"
+                        data-parsley-required="true"
+                        data-parsley-minlength="2"
+                        data-parsley-group="block0" />
+                </div>
+                <div class="form-group is-required">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text"
+                        id="last-name"
+                        name="last_name"
+                        class="form-control"
+                        data-parsley-required="true"
+                        data-parsley-minlength="2"
+                        data-parsley-group="block0" />
+                </div>
+                <div class="form-group is-required birthday">
+                    <label for="birthday" class="above">Date of Birth:</label>
+                    <div class="date-select">
+                        <select name="birthday[month]" id="month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">Decemember</option>
+                        </select>
+                        <select name="birthday[day]" id="day">
+                            {{ days|raw }}
+                        </select>
+                        <select name="birthday[year]" id="year">
+                            {{ years|raw }}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zip">Zip:</label>
+                    <input type="text"
+                        name="zip"
+                        class="form-control"
+                        data-parsley-type="number"
+                        data-parsley-required="false"
+                        data-parsley-length="[5, 5]"
+                        data-parsley-error-message="Please enter a valid zipcode"
+                        data-parsley-group="block0" />
+                </div>
+            </div>
+            <div class="item item-2">
+                <div class="registration-step">Registration step 2 of 3</div>
+                <h3>Account information</h3>
+                <p>We will use your e-mail address consistent with our privacy policy to send you messages concerning your DAM Rover account.</p>
+                <div class="form-group is-required">
+                    <label for="email">Email:</label>
+                    <input type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        data-parsley-required="true"
+                        data-parsley-type="email"
+                        data-parsley-group="block1"
+                        data-parsley-remote
+                        data-parsley-remote-validator="validateUsername"
+                        data-parsley-trigger="change focusout"
+                        data-parsley-remote-message="A user with this email address already exists."
+                        data-parsley-remote-options='{ "type": "POST", "dataType": "json", "headers": { "X-OCTOBER-REQUEST-HANDLER": "onAvailableUser", "X-OCTOBER-REQUEST-PARTIALS":"" }}' />
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="email_optin" name="email_optin" value="1" checked="checked" />
+                    <label for="email_optin" class="right">Please send me e-mail concerning other Denver Art Museum news, events, and offerings. I understand I may unsubscribe later if I choose to do so.</label>
+                </div>
+                <div class="form-group is-required">
+                    <label class="control-label" for="password">Password:</label>
+                    <input type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        data-parsley-required="true"
+                        data-parsley-minlength="6"
+                        data-parsley-group="block2" />
+                </div>
+                <div class="form-group is-required">
+                    <label class="control-label" for="password-confirmation">Confirm:</label>
+                    <input type="password"
+                        id="password-confirmation"
+                        name="password_confirmation"
+                        class="form-control"
+                        data-parsley-required="true"
+                        data-parsley-minlength="6"
+                        data-parsley-equalto="#password"
+                        data-parsley-group="block2" />
+                </div>
+                <input type="hidden" name="phone" value="555 555-5555" class="form-control" />
+                <input type="hidden" name="street_addr" value="" class="form-control" />
+                <input type="hidden" name="city" value="" class="form-control" />
+                <input type="hidden" name="state" value="" class="form-control" />
+            </div>
+            <!-- Slide 3 -->
+            <div class="item item-3">
+                <div class="registration-step">Registration step 3 of 3</div>
+                <div class="terms">
+                    {% partial 'terms-and-conditions' %}
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-
-
     <div class="buttons">
-        <button class="registration-prev btn btn-primary icon-arrow-left" href="#carousel-register" role="button" data-slide="prev">&nbsp;</button>
+        <button class="registration-prev btn btn-primary btn-prev" href="#carousel-register" role="button" data-slide="prev">&#10094; Back</button>
+        <button type="button" class="btn btn-default" data-dismiss="popup">Cancel</button>
         <button class="registration-next btn btn-primary" href="#carousel-register" role="button" data-slide="next">Continue</button>
         <button type="submit" data-request="onRegisterSubmit" class="register btn btn-primary">Accept Terms and Conditions</button>
-        <button type="button" class="btn btn-default" data-dismiss="popup">Cancel</button>
     </div>
 </form>
 
