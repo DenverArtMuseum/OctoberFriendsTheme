@@ -40,10 +40,12 @@
             $('.registration-prev').hide();
         }
 
-        if (idx == 3) {
+        if (idx == 2) {
             $('.registration-next').hide();
+            $('.accept').show();
             $('.register').show();
         } else {
+            $('.accept').hide();
             $('.register').hide();
             $('.registration-next').show();
         }

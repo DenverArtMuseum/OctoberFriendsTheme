@@ -5,7 +5,7 @@
             <a class="ignore-btn" href="#" data-activity-code="{{activity.activity_code}}">Remove</a>
             <a class="do-btn" href="#" data-activity-code="{{activity.activity_code}}">Complete</a>
         </div>
-        <div class="rover-activity preview">
+        <div id="rover_activity_{{ activity.id }}" class="rover-activity preview">
             <div class="image-container">
                 {% if activity.image.path %}
                     <img src="{{activity.image.path}}" />

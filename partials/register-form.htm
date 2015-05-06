@@ -83,7 +83,6 @@ function onStart() {
             <div class="item item-2">
                 <div class="registration-step">Registration step 2 of 3</div>
                 <h3>Account information</h3>
-                <p>We will use your e-mail address consistent with our privacy policy to send you messages concerning your DAM Rover account.</p>
                 <div class="form-group is-required">
                     <label for="email">Email</label>
                     <input type="email"
@@ -99,10 +98,7 @@ function onStart() {
                         data-parsley-remote-message="A user with this email address already exists."
                         data-parsley-remote-options='{ "type": "POST", "dataType": "json", "headers": { "X-OCTOBER-REQUEST-HANDLER": "onAvailableUser", "X-OCTOBER-REQUEST-PARTIALS":"" }}' />
                 </div>
-                <div class="form-group">
-                    <input type="checkbox" id="email_optin" name="email_optin" value="1" checked="checked" />
-                    <label for="email_optin" class="right">Please send me e-mail concerning other Denver Art Museum news, events, and offerings. I understand I may unsubscribe later if I choose to do so.</label>
-                </div>
+                <p class="email-policy">We will use your e-mail address consistent with our privacy policy to send you messages concerning your DAM Rover account.</p>
                 <div class="form-group is-required">
                     <label class="control-label" for="password">Password</label>
                     <input type="password"
@@ -124,14 +120,18 @@ function onStart() {
                         data-parsley-equalto="#password"
                         data-parsley-group="block2" />
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" class="left-check" id="email_optin" name="email_optin" value="1" checked="checked" />
+                    <label for="email_optin" class="right optin-label">Please send me e-mail concerning other Denver Art Museum news, events, and offerings. I understand I may unsubscribe later if I choose to do so.</label>
+                </div>
                 <input type="hidden" name="phone" value="555 555-5555" class="form-control" />
                 <input type="hidden" name="street_addr" value="" class="form-control" />
                 <input type="hidden" name="city" value="" class="form-control" />
                 <input type="hidden" name="state" value="" class="form-control" />
             </div>
-            <!-- Slide 3 -->
             <div class="item item-3">
                 <div class="registration-step">Registration step 3 of 3</div>
+                <h3>Terms &amp; Conditions</h3>
                 <div class="terms">
                     {% partial 'terms-and-conditions' %}
                 </div>
@@ -139,9 +139,10 @@ function onStart() {
         </div>
     </div>
     <div class="buttons">
+        <label for="accept" class="accept group">By choosing to continue, you accept these Terms &amp; Conditions.</label>
+        <button name="accept" id="accept" type="submit" data-request="onRegisterSubmit" class="register btn btn-primary">Accept</button>
         <button class="registration-prev btn btn-primary btn-prev" href="#carousel-register" role="button" data-slide="prev">&#10094; Back</button>
         <button class="registration-next btn btn-primary" href="#carousel-register" role="button" data-slide="next">Continue</button>
-        <button type="submit" data-request="onRegisterSubmit" class="register btn btn-primary">Accept Terms and Conditions</button>
         <button type="button" class="btn btn-default" data-dismiss="popup">Cancel</button>
     </div>
 </form>

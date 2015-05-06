@@ -13,6 +13,15 @@ Rover.prepareActivityList = function () {
     return activity;
   }
 
+  // Check if activity other than currently interacting activity is slid over
+  // If yes, slide that activity back.
+  function resetInactiveActivity(activity) {
+    if (slidActivity && activity.id !== slidActivity.id) {
+      coverButtons(slidActivity, null);
+      slidActivity = null;
+    }
+  }
+
   // Get the pixel width of the associated buttons container for an activity
   function getButtonsWidth(activity) {
     var listItem = activity.parentElement;
@@ -26,60 +35,12 @@ Rover.prepareActivityList = function () {
     return buttons.offsetWidth;
   }
 
-  function dragActivity(event) {
-    var activity = getActivity(event);
-
-    var delta = Math.abs(event.deltaX);
-
-    activity.style.right = delta + 'px';
-
-    var buttons = getButtonsWidth(activity);
-
-    if (delta > buttons) {
-      activity.style.right = buttons + 'px';
-    }
-  }
-
-  function dragStopActivity(event) {
-    var activity = getActivity(event);
-
-    var delta = parseInt(activity.style.right, 10);
-
-    var buttons = getButtonsWidth(activity);
-
-    if (delta < buttons) {
-      resetActivity(event);
-    }
-
-  }
-
-  function revealActivityButtons(event) {
-    var activity = getActivity(event);
-
-    var buttons = getButtonsWidth(activity);
-    activity.style.right = buttons + 'px';
-  }
-
-  function resetActivity(event) {
-    var activity = getActivity(event);
-
-    var delta = parseInt(activity.style.right, 10);
-
-    coverButtons(activity, delta);
-  }
-
-  function toggleDetails(event) {
-    var activity = getActivity(event);
-
-    if (activity.classList.contains('reveal')) {
-      activity.classList.remove('reveal');
-    }
-    else {
-      activity.classList.add('reveal');
-    }
-  }
-
+  // Slide Activity back over buttons
   function coverButtons(activity, delta) {
+    if (delta == null) {
+      delta = parseInt(activity.style.right, 10);
+    }
+
     var speed = 5;
 
     if (delta <= speed) {
@@ -98,17 +59,93 @@ Rover.prepareActivityList = function () {
     }
   }
 
+  // Show/Hide extended details for activity
+  function toggleDetails(event) {
+    var activity = getActivity(event);
+
+    if (slidActivity) {
+      coverButtons(slidActivity, null);
+    }
+
+    if (activity.classList.contains('reveal')) {
+      activity.classList.remove('reveal');
+    }
+    else {
+      activity.classList.add('reveal');
+    }
+  }
+
+  // Drag activity to left.
+  function dragActivity(event) {
+    var activity = getActivity(event);
+
+    resetInactiveActivity(activity);
+
+    var delta = Math.abs(event.deltaX);
+
+    activity.style.right = delta + 'px';
+
+    var buttons = getButtonsWidth(activity);
+
+    if (delta > buttons) {
+      activity.style.right = buttons + 'px';
+    }
+  }
+
+  // move activity to left to reveal buttons on swipe left
+  function revealActivityButtons(event) {
+    var activity = getActivity(event);
+
+    resetInactiveActivity(activity);
+
+    var buttons = getButtonsWidth(activity);
+    activity.style.right = buttons + 'px';
+    slidActivity = activity;
+  }
+
+  // Move activity back over buttons on pan/swipe right
+  function resetActivity(event) {
+    var activity = getActivity(event);
+
+    coverButtons(activity, null);
+  }
+
+  // On panend (drag stop), check current position of activity.
+  // If buttons revealed, leave revealed. If not, slide activity back over buttons.
+  function dragStopActivity(event) {
+    var activity = getActivity(event);
+
+    var delta = parseInt(activity.style.right, 10);
+
+    var buttons = getButtonsWidth(activity);
+
+    if (delta < buttons) {
+      resetActivity(event);
+    }
+    else {
+      slidActivity = activity;
+    }
+  }
+
+  // Each activity in the list gets its event listeners assigned here
   function prepareActivity(activity) {
     var activityControl = new Hammer(activity);
 
-    activityControl.on('tap', toggleDetails);
-    activityControl.on('panleft', dragActivity);
-    activityControl.on('panright', resetActivity);
-    activityControl.on('panend', dragStopActivity);
-    activityControl.on('swipeleft', revealActivityButtons);
+    activityControl.on('tap',        toggleDetails);
+    activityControl.on('panleft',    dragActivity);
+    activityControl.on('swipeleft',  revealActivityButtons);
+    activityControl.on('panright',   resetActivity);
+    activityControl.on('swiperight', resetActivity);
+    activityControl.on('panend',     dragStopActivity);
   }
 
+  // Find the list of activities in the page
   var activities = document.querySelectorAll('.rover-activity');
+
+  // Set current 'slid' activity to null
+  var slidActivity = null;
+
+  // assign event listeners to each activity
   for (var i = 0; i < activities.length; i += 1) {
     prepareActivity(activities[i]);
   }
@@ -119,11 +156,13 @@ Rover.prepActivitiesWhenReady = function () {
 
   var container = document.querySelectorAll('.rover-filtered-activity-list');
 
-  // Have to use jQuery for this next line
-  // October AJAX events can't be caught by addEventListener
+  // When the activity list is reloaded by a filter or refresh AJAX
+  // event, assign new event listeners to new activities.
+  // Have to use jQuery for this. October AJAX API events can't be caught by addEventListener
   $('.rover-filtered-activity-list').parent().on('ajaxUpdate', function(e){ Rover.prepareActivityList(); });
 };
 
+// Assign event listeners to activity list when page loaded
 Rover.prepActivitiesWhenReady();
 
 (function($) {

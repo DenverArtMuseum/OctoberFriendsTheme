@@ -1,5 +1,6 @@
 /* RESET
 -----------------------------------------------------------------------------*/
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -47,7 +48,7 @@ body.full-res {
   text-rendering: optimizeLegibility; }
 
 p {
-  margin: 10px 0;
+  margin: 0.625em 0;
 }
 
 blockquote:disabled, input:disabled, select:disabled, textarea:disabled, button:disabled, .button:disabled {
@@ -64,7 +65,7 @@ h1 {
 input, select, textarea, button, .button {
   background: #fff;
   color: #454b4d;
-  font-family: Verdana, sans-serif;
+  font-family: Verdana, sans-serif; /* TODO: form element typeface? */
   display: inline-block;
   vertical-align: center;
   position: relative;
@@ -72,7 +73,8 @@ input, select, textarea, button, .button {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-  width:170px;
+  font-size:.75em; /* .75 * 16px = 12px */
+  width:14.1667em; /* default 170px width for text input fields: fits on a phone nice, can be overridden for individual fields as needed */
   padding: .25em .5em .5em;
   -webkit-border-radius: .375em;
   -moz-border-radius: .375em;
@@ -97,8 +99,6 @@ input[type="button"], input[type="submit"], button, select, .button, .button:hov
 }
 input[type="button"], input[type="submit"], button, .button, .button:hover {
   font-weight:700;
-}
-input.form-control { /* TODO: this??? */
 }
 select.form-control {
   border: 2px solid #ccc !important;
@@ -181,7 +181,7 @@ fieldset {
 -----------------------------------------------------------------------------*/
 .page-content {
   margin:0;
-  padding:0 4% 50px 4%;
+  padding:0 4% 4.125em 4%;
 }
 
 .page-head {
@@ -227,8 +227,8 @@ fieldset {
   left:0;
   right:0;
   z-index:900;
-  border-top: 1px solid #8a9599;
-  background: #f5f9fa; /* TODO: better background */
+  border-top: thin solid #8a9599;
+  background: #f5f9fa;
   padding-top:.25em;
 }
 
@@ -376,8 +376,28 @@ body.login {
 #register p {
   margin:.25em 0 .75em 0;
 }
+#register .email-policy {
+  font-size:.875em;
+}
+#register .left-check {
+  float:left;
+}
+#register .optin-label {
+  font-size:.875em;
+  display:block;
+  margin:.25em 0 .25em 1.5em;
+}
+#register label.accept {
+  font-size:.875em;
+  font-weight:400;
+  margin:.5em 0;
+}
 #register .terms {
-  height: 300px;
+  font-size:.875em;
+  border: thin solid #8a9599;
+  font-weight:500;
+  padding:.125em .25em;
+  height: 288px;
   overflow-x: hidden;
   overflow-y:scroll;
 }
@@ -399,6 +419,11 @@ body.login {
 .parsley-errors-list {
   margin:0;
 }
+
+/* USER PROFILE PAGE
+-----------------------------------------------------------------------------*/
+
+
 /* ACTIVITY LIST
 -----------------------------------------------------------------------------*/
 
@@ -436,7 +461,7 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
 
 .rover-activity img {
     width:100%;
-    max-width:225px; /* TODO: haha. pixels */
+    max-width:225px; /* TODO: pixels, how quaint */
 }
 
 .rover-activity .svg-icon {
@@ -456,8 +481,8 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
 }
 
 .rover-activity .details {
-  padding:.75em 0 .75em 0;
-  margin-left:25%; 
+  padding:.5em 0 .75em 2%;
+  margin-left:23%;
   border-top:thin dashed #4db8db;
 }
 
@@ -597,7 +622,9 @@ a.ignore-btn {
   top:0;
   right:0;
   background:#f5f9fa;
-  border-radius:8px; /* TODO: browsify this. also ems */
+  -webkit-border-radius: .75em;
+  -moz-border-radius: .75em;
+  border-radius:.75em; 
   border:thin solid #8a9599;
 }
 .rover-activity-filters.toggle-on ul {
@@ -810,9 +837,9 @@ a.ignore-btn {
 /* ICONS (SVG)
 -----------------------------------------------------------------------------*/
 .svg-icon {
-  width:1.2em; /* TODO: explicitly set this to line-height */
+  width:1.2em; /* slightly less than line height (1.4 set elsewhere), larger than font */
   height:1.2em;
-  fill:#4db8db; /* TODO: set this to font color */
+  fill:#4db8db;
 }
 
 .svg-icon.inline {
