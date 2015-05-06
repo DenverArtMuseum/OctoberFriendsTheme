@@ -737,14 +737,14 @@ a.ignore-btn {
 .modal-header {
   min-height: 17;
   padding:.5em .75em;
-  background:rgba(77,184,219,1);
+  background:rgba(218,226,229,1);
   color:#fff;
   border-bottom: 1px solid #e5e5e5;
   border-top-left-radius:.375em;
   border-top-right-radius:.375em;
 }
 .modal-header .close-svg {
-  fill:#fff;
+  fill:#454b4d;
 }
 .modal-header .modal-logo {
   width:35%;
@@ -818,8 +818,6 @@ a.ignore-btn {
 .svg-icon.inline {
   margin-right:.25em;
 }
-
-
 
 .close-svg {
   width: 1.5em;
