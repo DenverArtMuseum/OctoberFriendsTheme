@@ -1,0 +1,9 @@
+<div class="flash-header">
+    <a href="#" class="close-btn">Close</a>
+</div>
+<div class="flash-messages">
+    {% flash %}
+        {% set class = ( type == 'error') ? 'danger' : type %}
+        <div class="flash flash-{{ class }}">{{ message }}</div>
+    {% endflash %}
+</div>

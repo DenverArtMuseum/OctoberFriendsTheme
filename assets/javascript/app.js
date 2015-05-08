@@ -162,20 +162,58 @@ Rover.prepActivitiesWhenReady = function () {
   $('.rover-filtered-activity-list').parent().on('ajaxUpdate', function(e){ Rover.prepareActivityList(); });
 };
 
-// Assign event listeners to activity list when page loaded
+// Assign event listeners to activity list 
 Rover.prepActivitiesWhenReady();
 
 (function($) {
 
+  var flashtimer;
+
+  // Display flash messages when they are received, set up close button handler(s)
+  $('#flashMessages').on('ajaxUpdate', function(e) {
+    $('#flashMessages').fadeIn(400);
+
+    $('#flashMessages .close-btn').click(function() {
+      $('#flashMessages').fadeOut(500, function() {
+        $(this).remove();
+      });
+    });
+
+    $('#flashMessages .refresh-btn').click(function() {
+      // Refresh active list pane (holy hell, none of this is written yet)
+    });
+  });
+
+
   // Submit activity code when "do" button used
-  // Should be replaced with an API call at some point
+  // TODO: Should be replaced with an API call at some point, needs new component
   $('a.do-btn').click(function (){
     var code = $(this).data('activity-code');
     var input = $('input#activity-code');
     input.val(code);
     input.parent().submit();
     $(this).parent().addClass('completed');
+
+    return false;
   });
+
+  $('a.ignore-btn').click(function() {
+    var activity = $(this).data('activity-id');
+
+    var rating = {
+      activity: parseInt(activity),
+      rating: 0
+    };
+
+    var options = {
+      data: { rating: JSON.stringify(rating) }
+    };
+
+    $.request('onRate', options);
+
+    return false;
+  });
+
 
   /* BEGIN FILTER THEME TWEAKS */
 

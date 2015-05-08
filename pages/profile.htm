@@ -21,13 +21,13 @@ function onStart()
 {% put bodyclass %}tabbed-page{% endput %}
 <div id="page-tabs">
     <ul>
-        <li><a href="#activity-log">Activity Log</a></li>
         <li><a href="#user-profile">Profile</a></li>
+        <li><a href="#activity-log">Activity Log</a></li>
     </ul>
-    <div id="activity-log" class="tabbed-container">
-        <div id="activity-stream">{% component 'ActivityStream' %}</div>
-    </div>
     <div id="user-profile" class="tabbed-container">
         {% component 'UserProfile' %}
+    </div>
+    <div id="activity-log" class="tabbed-container">
+        <div id="activity-stream">{% component 'ActivityStream' %}</div>
     </div>
 </div>

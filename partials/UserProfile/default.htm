@@ -1,5 +1,5 @@
-<form id="user-profile" class="row">
-    <div class="col-md-6 col-sm-6">
+<form id="user-profile" class="user-profile-form">
+    <div>
         <div class="form-group is-required">
             <label>First Name</label>
             <input type="text" 
@@ -30,17 +30,17 @@
                 data-parsley-type="email"
             />
         </div>
-        <div class="form-group">
-            <a href="#" data-control="popup" data-handler="onPassword">Change Password</a>
-        </div>
          <div class="form-group">
-                <input type="checkbox" id="metadata[email_optin]" name="metadata[email_optin]" value="1" 
+                <p class="email-policy">We will use your e-mail address consistent with our privacy policy to send you messages concerning your DAM Rover account.</p>
+                <input type="checkbox" class="left-check" id="metadata[email_optin]" name="metadata[email_optin]" value="1" 
                 {% if user.metadata.email_optin %}
                     checked="checked"
                 {% endif %}
-                />
-                <label for="metadata[email_optin]">Email Opt-in
+                /><label class="optin-label" for="metadata[email_optin]">Please send me e-mail concerning other Denver Art Museum news, events, and offerings. I understand I may unsubscribe later if I choose to do so.
             </label>
+        </div>
+        <div class="form-group">
+            <a href="#" class="button btn-default chng-passwd" data-control="popup" data-handler="onPassword">Change Password</a>
         </div>
 
         <h3>Contact Information</h3>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group">
                 <label>State</label>
                 <select
                     id="state"
@@ -75,7 +75,7 @@
                 </select>
             </div>
 
-            <div class="form-group is-required col-md-6">
+            <div class="form-group is-required">
                 <label>Zipcode</label>
                 <input type="text" 
                     name="zip" 
@@ -96,9 +96,9 @@
 
     </div>
 
-    <div class="col-md-6 col-sm-6">
+    <div>
 
-        <h3>Demographic Information</h3>
+        <h3>Personal Information</h3>
 
         <div class="form-group">
             <label>Gender</label>
@@ -113,6 +113,7 @@
                 {% endfor %}
             </select>
         </div>
+        <!--
         <div class="form-group">
             <label>Race</label>
             <select name="metadata[race]" class="form-control">
@@ -126,6 +127,7 @@
                 {% endfor %}
             </select>
         </div>
+    -->
         <div class="form-group">
             <label>Education</label>
             <select name="metadata[education]" class="form-control">
@@ -156,7 +158,6 @@
         <div class="form-group">
             <label>Number of people in your household</label>
             <select name="metadata[household_size]" class="form-control">
-                <option value=""> - Select One - </option>
                 {% for i in 0..9 %}
                 <option
                 {% if i == user.metadata.household_size %}
@@ -170,7 +171,7 @@
 
     </div>
 
-    <div class="col-md-12 col-sm-12">
+    <div>
         <button type="submit" data-request="onSave" class="btn btn-primary">Save</button>
     </div>
 </form>

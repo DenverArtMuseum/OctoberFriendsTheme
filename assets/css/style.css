@@ -272,7 +272,9 @@ body.explore .icon-explore, body.explore .icon-explore .svg-icon {
 
 /* FLASH MESSAGES
 -----------------------------------------------------------------------------*/
-
+#flashmessages {
+  display:none;
+}
 
 /* TABS
 -----------------------------------------------------------------------------*/
@@ -361,6 +363,10 @@ body.login {
   float:right;
 }
 
+.forgot-passwd .button {
+  font-size:.75em;
+}
+
 #register {
   font-size:1em;
 }
@@ -376,13 +382,13 @@ body.login {
 #register p {
   margin:.25em 0 .75em 0;
 }
-#register .email-policy {
+.email-policy {
   font-size:.875em;
 }
-#register .left-check {
+.left-check {
   float:left;
 }
-#register .optin-label {
+.optin-label {
   font-size:.875em;
   display:block;
   margin:.25em 0 .25em 1.5em;
@@ -422,7 +428,19 @@ body.login {
 
 /* USER PROFILE PAGE
 -----------------------------------------------------------------------------*/
-
+.user-profile-form {}
+.user-profile-form .chng-passwd {
+  font-size:.75em;
+  width:14.1667em;
+}
+.user-profile-form h3 {
+  margin-top:1em;
+  font-weight:500;
+  margin-bottom:.25em;
+}
+.user-profile-form select {
+  float:right;
+}
 
 /* ACTIVITY LIST
 -----------------------------------------------------------------------------*/

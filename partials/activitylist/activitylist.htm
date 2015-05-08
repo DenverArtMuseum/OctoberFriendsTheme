@@ -2,7 +2,7 @@
     {% for activity in activities %}
     <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
         <div class="buttons">
-            <a class="ignore-btn" href="#" data-activity-code="{{activity.activity_code}}">Remove</a>
+            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">Remove</a>
             <a class="do-btn" href="#" data-activity-code="{{activity.activity_code}}">Complete</a>
         </div>
         <div id="rover_activity_{{ activity.id }}" class="rover-activity preview">
