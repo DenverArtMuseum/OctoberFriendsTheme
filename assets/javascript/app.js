@@ -1,5 +1,30 @@
 var Rover = {};
 
+Rover.slidActivity = null;
+
+Rover.coverButtons = function(activity, delta) {
+    if (delta == null) {
+      delta = parseInt(activity.style.right, 10);
+    }
+
+    var speed = 5;
+
+    if (delta <= speed) {
+      delta = 0;
+    }
+    else {
+      delta -= speed;
+    }
+
+    activity.style.right = delta + 'px';
+    
+    if (delta > 0) {
+      setTimeout(function() {
+        Rover.coverButtons(activity, delta);
+      })
+    }
+};
+
 Rover.prepareActivityList = function () {
 
   // Get the activity for the targeted element in an event
@@ -16,9 +41,9 @@ Rover.prepareActivityList = function () {
   // Check if activity other than currently interacting activity is slid over
   // If yes, slide that activity back.
   function resetInactiveActivity(activity) {
-    if (slidActivity && activity.id !== slidActivity.id) {
-      coverButtons(slidActivity, null);
-      slidActivity = null;
+    if (Rover.slidActivity && activity.id !== Rover.slidActivity.id) {
+      Rover.coverButtons(Rover.slidActivity, null);
+      Rover.slidActivity = null;
     }
   }
 
@@ -63,8 +88,8 @@ Rover.prepareActivityList = function () {
   function toggleDetails(event) {
     var activity = getActivity(event);
 
-    if (slidActivity) {
-      coverButtons(slidActivity, null);
+    if (Rover.slidActivity) {
+      Rover.coverButtons(Rover.slidActivity, null);
     }
 
     if (activity.classList.contains('reveal')) {
@@ -100,14 +125,14 @@ Rover.prepareActivityList = function () {
 
     var buttons = getButtonsWidth(activity);
     activity.style.right = buttons + 'px';
-    slidActivity = activity;
+    Rover.slidActivity = activity;
   }
 
   // Move activity back over buttons on pan/swipe right
   function resetActivity(event) {
     var activity = getActivity(event);
 
-    coverButtons(activity, null);
+    Rover.coverButtons(activity, null);
   }
 
   // On panend (drag stop), check current position of activity.
@@ -123,7 +148,7 @@ Rover.prepareActivityList = function () {
       resetActivity(event);
     }
     else {
-      slidActivity = activity;
+      Rover.slidActivity = activity;
     }
   }
 
@@ -143,7 +168,7 @@ Rover.prepareActivityList = function () {
   var activities = document.querySelectorAll('.rover-activity');
 
   // Set current 'slid' activity to null
-  var slidActivity = null;
+  //var Rover.slidActivity = null;
 
   // assign event listeners to each activity
   for (var i = 0; i < activities.length; i += 1) {
@@ -186,6 +211,9 @@ Rover.prepActivitiesWhenReady();
       $('#flashMessages').fadeOut(500, function() {
         $(this).children().remove();
       });
+      var activity = jQuery(Rover.slidActivity);
+      Rover.coverButtons(Rover.slidActivity,null);
+      activity.hide();
     });
 
     $('#flashMessages .refresh-btn').click(function() {
@@ -195,6 +223,9 @@ Rover.prepActivitiesWhenReady();
       $('#flashMessages').fadeOut(500, function() {
         $(this).children().remove();
       });
+      var activity = jQuery(Rover.slidActivity);
+      Rover.coverButtons(Rover.slidActivity,null);
+      activity.hide();
     });
   });
 

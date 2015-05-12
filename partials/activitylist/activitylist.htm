@@ -1,6 +1,3 @@
-{% if overridden %}
-Overide
-{% endif %}
 <ol class="rover-filtered-activity-list">
     {% for activity in activities %}
     <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
