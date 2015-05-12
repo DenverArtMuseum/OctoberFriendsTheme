@@ -1,9 +1,15 @@
 <div class="flash-header">
-    <a href="#" class="close-btn">Close</a>
+    <button type="button" class="close-btn icon">{% partial 'close-icon' %}</button>
 </div>
 <div class="flash-messages">
     {% flash %}
         {% set class = ( type == 'error') ? 'danger' : type %}
-        <div class="flash flash-{{ class }}">{{ message }}</div>
+        <div class="flash flash-{{ class }}">{{ message|raw }}</div>
+        {% if type == 'success' %}
+            <div class="flash-buttons group">
+                <button class="close-btn">Back to my list</button>
+                <button class="refresh-btn">Fetch a new list</button>
+            </div>
+        {% endif %}
     {% endflash %}
 </div>

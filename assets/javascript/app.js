@@ -167,52 +167,105 @@ Rover.prepActivitiesWhenReady();
 
 (function($) {
 
-  var flashtimer;
-
   // Display flash messages when they are received, set up close button handler(s)
   $('#flashMessages').on('ajaxUpdate', function(e) {
+    $('body').append('<div id="rover-modal-background"></div>');
+    $('#rover-modal-background').css('position', 'fixed')
+      .hide()
+      .css('top', 0)
+      .css('left', 0)
+      .css('bottom', 0)
+      .css('right', 0)
+      .css('z-index', 599)
+      .css('background-color', '#fff')
+      .fadeTo('fast',.5);
     $('#flashMessages').fadeIn(400);
 
     $('#flashMessages .close-btn').click(function() {
+      $('#rover-modal-background').remove();
       $('#flashMessages').fadeOut(500, function() {
-        $(this).remove();
+        $(this).children().remove();
       });
     });
 
     $('#flashMessages .refresh-btn').click(function() {
       // Refresh active list pane (holy hell, none of this is written yet)
+      refreshActiveList();
+      $('#rover-modal-background').remove();
+      $('#flashMessages').fadeOut(500, function() {
+        $(this).children().remove();
+      });
     });
   });
 
+  // This will need to be replaced after the demo, when we combine panes.
+  function refreshActiveList() {
+    var list = $('.rover-activity-filters-list');
+
+    var active_filters = {
+      categories: 'all',
+      search: ''
+    };
+    
+    // generate a list of active categories if not all categories are active
+    if (list.find('.friends-activity-filter.inactive').length != 0) {
+      active_filters['categories'] = list
+        .find('.friends-activity-filter.active')
+        .map(function(i, e) {
+          return $(e).data('filter-name');
+        })
+        .get();
+    }
+
+    // initialize options for AJAX request
+    var options = {
+      data: { filters: JSON.stringify(active_filters) }
+    };
+
+    // Send the AJAX request to update the page
+    $.request(list.data('filter-component'), options);    
+  }
 
   // Submit activity code when "do" button used
   // TODO: Should be replaced with an API call at some point, needs new component
-  $('a.do-btn').click(function (){
-    var code = $(this).data('activity-code');
-    var input = $('input#activity-code');
-    input.val(code);
-    input.parent().submit();
-    $(this).parent().addClass('completed');
+  function startActivityListeners() {
+    $('a.do-btn').click(function (){
+      var activity = $(this).data('activity-id');
 
-    return false;
-  });
+      var completion = {
+        activity: parseInt(activity)
+      };
 
-  $('a.ignore-btn').click(function() {
-    var activity = $(this).data('activity-id');
+      var options = {
+        data: { completion: JSON.stringify(completion) }
+      };
 
-    var rating = {
-      activity: parseInt(activity),
-      rating: 0
-    };
+      $.request('onComplete', options);
 
-    var options = {
-      data: { rating: JSON.stringify(rating) }
-    };
+      return false;
+    });
 
-    $.request('onRate', options);
+    $('a.ignore-btn').click(function() {
+      var activity = $(this).data('activity-id');
 
-    return false;
-  });
+      var rating = {
+        activity: parseInt(activity),
+        rating: 0
+      };
+
+      var options = {
+        data: { rating: JSON.stringify(rating) }
+      };
+
+      $.request('onRate', options);
+
+      return false;
+    });
+  }
+
+  startActivityListeners();
+
+  $('.rover-filtered-activity-list').parent().on('ajaxUpdate', function(e){ startActivityListeners(); });
 
 
   /* BEGIN FILTER THEME TWEAKS */

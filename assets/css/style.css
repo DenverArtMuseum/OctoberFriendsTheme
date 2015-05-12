@@ -60,6 +60,15 @@ h1 {
   margin:0;
 }
 
+ul.inline-non-bulleted {
+  list-style:none;
+  margin:1em 0;
+  padding:0;
+}
+ul.inline-non-bulleted li {
+  margin:.5em 0 0 0;
+}
+
 /* FORM ELEMENTS
 -----------------------------------------------------------------------------*/
 input, select, textarea, button, .button {
@@ -272,8 +281,50 @@ body.explore .icon-explore, body.explore .icon-explore .svg-icon {
 
 /* FLASH MESSAGES
 -----------------------------------------------------------------------------*/
-#flashmessages {
+#flashMessages {
   display:none;
+  position:fixed;
+  top:1em;
+  left:10%;
+  right:10%;
+  z-index:10000;
+  background:#fff;
+  border:thin solid #8a9599;
+  margin:0 auto;
+  -webkit-border-radius:.5em;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  padding:0 0 .5em 0;
+}
+#flashMessages .flash-header {
+  -webkit-top-left-border-radius:.5em;
+  -webkit-top-right-border-radius:.5em;
+  -moz-border-radius-topleft:.5em;
+  -moz-border-radius-topright:.5em;
+  border-top-left-radius:.5em;
+  border-top-right-radius:.5em;
+  background:#dae2e5;
+  text-align:right;
+  padding:.25em .5em 0 .5em;
+}
+#flashMessages .flash-messages {
+  padding:.5em;
+}
+#flashMessages .flash-buttons {
+  padding:.5em 0 0 0;
+}
+#flashMessages .flash-buttons .close-btn {
+  float:left;
+}
+#flashMessages .refresh-btn {
+  float:right;
+}
+#flashMessages .close-btn.icon {
+  border:none;
+  background:transparent;
+}
+#flashMessages .close-svg {
+  fill:#454b4d;
 }
 
 /* TABS
@@ -343,16 +394,20 @@ body.login {
   width:100%;
 }
 
-.login-header{
+.login-intro{
   width:100%;
-  text-align:center;
-  font-weight:700;
-  font-size:1.5em;
-}
-.login-header a {
-  display:block;
   color:#fff;
-  padding:.5em 0;
+  text-align:left;
+  font-weight:700;
+  font-size:1em;
+  margin:1.5em 0;
+}
+.login-intro a, .login-intro a:visited, .login-intro a:active, .login-intro a:hover {
+  color:#fff;
+}
+
+.login-modal-triggers {
+  margin:1em 0;
 }
 
 .login-modal-triggers .button {
@@ -832,6 +887,12 @@ a.ignore-btn {
 .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
+
+.help h1 {
+  font-size:1em;
+  margin:0 0 .5em 0;
+}
+
 
 @media (min-width: 768px) {
   .modal-dialog {

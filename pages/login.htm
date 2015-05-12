@@ -1,12 +1,12 @@
-title = "Login to Friends"
+title = "Welcome to Rover"
 url = "/"
 layout = "login"
 hidden = "0"
 
 [Modal WhatsThisModal]
-linkTitle = "<span class="icon-question-circle">What is Rover?</span>"
+linkTitle = "<span class="icon-question-circle">Learn More</span>"
 linkClasses = "help small pop"
-title = "What is Rover?"
+title = "Meet Rover"
 partial = "whatisthis"
 
 [UserLogin]
@@ -23,5 +23,5 @@ function onStart()
 ?>
 ==
 <img class="login-logo" src="{{ 'assets/images/logo.svg'|theme }}" alt="Rover" />
-<div class="login-header">{% component 'WhatsThisModal' %}</div>
 <div class="login-modal-triggers">{% component 'UserLogin' %}</div>
+<div class="login-intro">Rover is a museum visitor’s best friend. Rover will fetch recommendations of things for you to see and do at the museum. Sign up to get access to a complete list of activities, programs and exhibitions. {% component 'WhatsThisModal' %}</div>
