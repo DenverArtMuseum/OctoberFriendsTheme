@@ -622,6 +622,31 @@ a.ignore-btn {
   height:auto;
 }
 
+/* PAGINATION
+-----------------------------------------------------------------------------*/
+.pagination {
+  margin:1em auto;
+  padding:0;
+  list-style:none;
+  text-align:center;
+}
+.pagination li {
+  display:inline-block;
+  margin:0 .5em;
+  font-size:1.25em;
+}
+.pagination a, .pagination a:visited, .pagination a:hover {
+  text-decoration:underline;
+  color:#4db8db;
+  font-weight:400;
+}
+.pagination li.disabled {
+  color:#8a9599;
+}
+.pagination li.active {
+  font-weight:700;
+}
+
 /* ACTIVITY LIST FILTERS
 -----------------------------------------------------------------------------*/
 .rover-activity-filters {
