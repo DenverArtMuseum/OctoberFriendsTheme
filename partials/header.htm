@@ -51,13 +51,10 @@ function onStart() {
         {% if user %}
             <nav class="clearfix primary-links">
                 <div class="item">
-                    <a class="icon-home" href="/home"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'home' %}#icon-star-full{% else %}#icon-star-empty{% endif %}"></use></svg>Recommend</a>
+                    <a class="icon-explore" href="/home"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>
                 </div>
                 <div class="item">
-                    <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'profile' %}#icon-user-full{% else %}#icon-user-empty{% endif %}"></use></svg>My Profile</a>
-                </div>
-                <div class="item">
-                    <a class="icon-explore" href="/explore"><svg class="svg-icon nav"><use xlink:href="#icon-compass"></use></svg>Explore</a>
+                    <a class="icon-profile" href="/profile"><svg class="svg-icon nav"><use xlink:href="{% if this.page.baseFileName == 'profile' %}#icon-user-full{% else %}#icon-user-empty{% endif %}"></use></svg>My Rover</a>
                 </div>
                 <div class="item">
                     <a class="icon-signout" href="/logout"><svg class="svg-icon nav"><use xlink:href="#icon-signout"></use></svg>Sign Out</a>

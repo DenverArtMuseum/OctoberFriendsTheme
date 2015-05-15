@@ -16,5 +16,11 @@ target_component = "activitylist"
     {% component 'ActivityFilters' %}
     <h1><a href="/home" title="Home"><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /></a> Explore</h1>
 {% endput %}
+{% put bodyclass %}tabbed-page{% endput %}
 
-{% component 'activitylist' %}
+<div id="page-tabs">
+  {% partial 'tab-nav' %}
+  <div class="tabbed-container">
+    {% component 'activitylist' %}
+  </div>
+</div>

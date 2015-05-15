@@ -242,9 +242,12 @@ fieldset {
 }
 
 .primary-links .item {
-    width: 25%;
+    width: 33%;
     text-align: center;
     float: left;
+}
+.primary-links .item:last-child {
+  float:right;
 }
 
 .primary-links .item a, .primary-link .item a:hover {
@@ -263,17 +266,13 @@ fieldset {
   margin:0 auto;
 }
 
-body.home .icon-home, body.home .icon-home .svg-icon {
-  color:#6cc069;
-  fill:#6cc069;
-}
-
 body.profile .icon-profile, body.profile .icon-profile .svg-icon {
   color:#6cc069;
   fill:#6cc069;
 }
 
-body.explore .icon-explore, body.explore .icon-explore .svg-icon {
+body.explore .icon-explore, body.explore .icon-explore .svg-icon,
+body.home .icon-explore, body.home .icon-explore .svg-icon {
   color:#6cc069;
   fill:#6cc069;
 }
@@ -329,10 +328,11 @@ body.explore .icon-explore, body.explore .icon-explore .svg-icon {
 
 /* TABS
 -----------------------------------------------------------------------------*/
-.page-tabs {
+#page-tabs {
 
 }
-.ui-tabs-nav {
+.ui-tabs-nav,
+.tab-list {
   background:#f5f9fa;
   border-bottom:thin solid #8a9599;
   border-radius:0;
@@ -341,28 +341,40 @@ body.explore .icon-explore, body.explore .icon-explore .svg-icon {
   padding:0 4%;
   margin:0;
 }
-.ui-tabs-nav:after {
+.ui-tabs-nav:after,
+.tab-list:after {
   content: "";
   display: table;
   clear: both;
 }
 
-ul.ui-tabs-nav li.ui-state-default {
+ul.ui-tabs-nav li.ui-state-default,
+.tab-list .page-tab {
   background:transparent;
   float:left;
   padding:0 .25em .125em .25em;
   margin:.125em .5em .063em .5em;
   border-bottom: 2px solid #f5f9fa;
 }
-ul.ui-tabs-nav li.ui-state-default:first-child {
-  padding-left:0;
+ul.ui-tabs-nav li.ui-state-default:first-child,
+.tab-list .page-tab:first-child {
   margin-left:0;
 }
-ul.ui-tabs-nav li.ui-state-default.ui-state-active {
+ul.ui-tabs-nav li.ui-state-default:last-child,
+.tab-list .page-tab:last-child {
+  margin-right:0;
+}
+ul.ui-tabs-nav li.ui-state-default.ui-state-active,
+.tab-list .page-tab.active {
   border-bottom: 2px solid #6cc069;
   color:#454b4d; 
 }
-a.ui-tabs-anchor, a.ui-tabs-anchor:hover, a.ui-tabs-anchor:active {
+a.ui-tabs-anchor,
+.page-tab a,
+a.ui-tabs-anchor:hover,
+.page-tab a:hover,
+a.ui-tabs-anchor:active,
+.page-tab a:active {
   font-size:.875em;
   font-weight:400;
   color:#454b4d; 
@@ -370,10 +382,14 @@ a.ui-tabs-anchor, a.ui-tabs-anchor:hover, a.ui-tabs-anchor:active {
 }
 ul.ui-tabs-nav li.ui-state-default.ui-state-active a.ui-tabs-anchor,
 ul.ui-tabs-nav li.ui-state-default.ui-state-active a.ui-tabs-anchor:hover,
-ul.ui-tabs-nav li.ui-state-default.ui-state-active a.ui-tabs-anchor:active {
+ul.ui-tabs-nav li.ui-state-default.ui-state-active a.ui-tabs-anchor:active,
+.tab-list .page-tab a,
+.tab-list .page-tab a:hover,
+.tab-list .page-tab a:active {
   font-weight:500;
 }
-.ui-tabs-panel {
+.ui-tabs-panel,
+.tabbed-container {
   padding:0 4%;
 }
 
@@ -436,6 +452,9 @@ body.login {
 }
 #register p {
   margin:.25em 0 .75em 0;
+}
+#register .form-group.is-required > label:after {
+  content:"";
 }
 .email-policy {
   font-size:.875em;

@@ -113,21 +113,7 @@
                 {% endfor %}
             </select>
         </div>
-        <!--
-        <div class="form-group">
-            <label>Race</label>
-            <select name="metadata[race]" class="form-control">
-                <option value=""> - Select One - </option>
-                {% for option in options.race %}
-                <option
-                {% if option == user.metadata.race %}
-                selected="selected"
-                {% endif %}
-                >{{ option }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    -->
+
         <div class="form-group">
             <label>Education</label>
             <select name="metadata[education]" class="form-control">
@@ -142,19 +128,6 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Household Income</label>
-            <select name="metadata[household_income]" class="form-control">
-                <option value=""> - Select One - </option>
-                {% for option in options.household_income %}
-                <option
-                {% if option == user.metadata.household_income %}
-                selected="selected"
-                {% endif %}
-                >{{ option }}</option>
-                {% endfor %}
-            </select>
-        </div>
         <div class="form-group">
             <label>Number of people in your household</label>
             <select name="metadata[household_size]" class="form-control">

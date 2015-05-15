@@ -1,6 +1,11 @@
+{% if emptyRecommendations == true %}
+<div class="empty-recommendations">
+    Empty Recommendation message
+</div>
+{% endif %}
 <ol class="rover-filtered-activity-list">
-    {% for activity in activities %}
-    <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}">
+    {% for index, activity in activities %}
+    <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
         <div class="buttons">
             <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">Remove</a>
             <a class="do-btn" href="#" data-activity-id="{{activity.id}}">Complete</a>

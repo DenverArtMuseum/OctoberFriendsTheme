@@ -4,9 +4,6 @@ layout = "default"
 description = "Home — Recommendation List"
 hidden = "0"
 
-[ActivityCodeForm]
-[UserMostRecentBadge]
-
 [Recommendations 'activitylist']
 recommend = "activity"
 ifEmpty = "weight"
@@ -21,8 +18,14 @@ target_component = 'activitylist'
 ==
 {% put head %}
     {% component 'ActivityFilters' %}
-    <h1><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /> Recommendations</h1>
+    <h1><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" />Explore</h1>
 {% endput %}
+{% put bodyclass %}tabbed-page{% endput %}
 
-{% component 'activitylist' %}
-<div class="hideform">{% component 'ActivityCodeForm' %}</div>
+<div id="page-tabs">
+  {% partial 'tab-nav' %}
+  <div class="tabbed-container">
+    {% component 'activitylist' %}
+  </div>
+</div>
+
