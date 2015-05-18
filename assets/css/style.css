@@ -72,7 +72,7 @@ ul.inline-non-bulleted li {
 /* FORM ELEMENTS
 -----------------------------------------------------------------------------*/
 input, select, textarea, button, .button {
-  background: #fff;
+  background: #f5f9fa;
   color: #454b4d;
   font-family: Verdana, sans-serif; /* TODO: form element typeface? */
   display: inline-block;
@@ -559,6 +559,23 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
 .rover-activity .svg-icon {
   fill:#4db8db;
   margin-bottom:-.188em;
+}
+
+.rover-activity .swipe-indicator .svg-icon {
+  fill:#8a9599;
+  float:right;
+  height:.875em;
+  margin:2.375em 0 0 0;
+  display:inline;
+}
+.rover-activity .swipe-indicator .svg-icon.right {
+  display:none;
+}
+.rover-activity.slid .swipe-indicator .svg-icon.left {
+  display:none;
+}
+.rover-activity.slid .swipe-indicator .svg-icon.right {
+  display:inline;
 }
 
 .rover-activity .svg-icon.location {

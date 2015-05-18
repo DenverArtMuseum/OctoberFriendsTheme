@@ -10,7 +10,11 @@
             <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">Remove</a>
             <a class="do-btn" href="#" data-activity-id="{{activity.id}}">Complete</a>
         </div>
-        <div id="rover_activity_{{ activity.id }}" class="rover-activity preview">
+        <div id="rover_activity_{{ activity.id }}" class="rover-activity preview group">
+            <div class="swipe-indicator">
+                <svg class="svg-icon inline left"><use xlink:href="#icon-left-angle"></use></svg>
+                <svg class="svg-icon inline right"><use xlink:href="#icon-right-angle"></use></svg>
+            </div>
             <div class="image-container">
                 {% if activity.image.path %}
                     <img src="{{activity.image.path}}" />

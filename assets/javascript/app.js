@@ -2,6 +2,16 @@ var Rover = {};
 
 Rover.slidActivity = null;
 
+Rover.registerRevealedActivity = function(activity) {
+  Rover.slidActivity = activity;
+  activity.classList.add('slid');
+}
+
+Rover.unregisterRevealedActivity = function(activity) {
+  Rover.slidActivity = null;
+  activity.classList.remove('slid');
+}
+
 Rover.coverButtons = function(activity, delta) {
     if (delta == null) {
       delta = parseInt(activity.style.right, 10);
@@ -23,6 +33,8 @@ Rover.coverButtons = function(activity, delta) {
         Rover.coverButtons(activity, delta);
       })
     }
+
+    Rover.unregisterRevealedActivity(activity);
 };
 
 Rover.prepareActivityList = function () {
@@ -43,7 +55,7 @@ Rover.prepareActivityList = function () {
   function resetInactiveActivity(activity) {
     if (Rover.slidActivity && activity.id !== Rover.slidActivity.id) {
       Rover.coverButtons(Rover.slidActivity, null);
-      Rover.slidActivity = null;
+      Rover.unregisterRevealedActivity(activity);
     }
   }
 
@@ -58,30 +70,6 @@ Rover.prepareActivityList = function () {
     var buttons =  listItem.querySelector('.buttons');
 
     return buttons.offsetWidth;
-  }
-
-  // Slide Activity back over buttons
-  function coverButtons(activity, delta) {
-    if (delta == null) {
-      delta = parseInt(activity.style.right, 10);
-    }
-
-    var speed = 5;
-
-    if (delta <= speed) {
-      delta = 0;
-    }
-    else {
-      delta -= speed;
-    }
-
-    activity.style.right = delta + 'px';
-    
-    if (delta > 0) {
-      setTimeout(function() {
-        coverButtons(activity, delta);
-      })
-    }
   }
 
   // Show/Hide extended details for activity
@@ -125,7 +113,7 @@ Rover.prepareActivityList = function () {
 
     var buttons = getButtonsWidth(activity);
     activity.style.right = buttons + 'px';
-    Rover.slidActivity = activity;
+    Rover.registerRevealedActivity(activity);
   }
 
   // Move activity back over buttons on pan/swipe right
@@ -148,7 +136,7 @@ Rover.prepareActivityList = function () {
       resetActivity(event);
     }
     else {
-      Rover.slidActivity = activity;
+      Rover.registerRevealedActivity(activity);
     }
   }
 
