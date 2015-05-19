@@ -9,11 +9,15 @@ hidden = "0"
 target_component = "activitylist"
 
 [ActivityInteractions]
+
+[PopupHelp]
+topic = "@explore"
 ==
 
 ==
 {% put head %}
     {% component 'ActivityFilters' %}
+    {% component 'PopupHelp' %}
     <h1><a href="/home" title="Home"><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /></a> Explore</h1>
 {% endput %}
 {% put bodyclass %}tabbed-page{% endput %}

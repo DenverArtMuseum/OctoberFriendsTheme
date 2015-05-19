@@ -13,11 +13,15 @@ limit = "12"
 target_component = 'activitylist'
 
 [ActivityInteractions]
+
+[PopupHelp]
+topic = "@explore"
 ==
 
 ==
 {% put head %}
     {% component 'ActivityFilters' %}
+    {% component 'PopupHelp' %}
     <h1><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" />Explore</h1>
 {% endput %}
 {% put bodyclass %}tabbed-page{% endput %}

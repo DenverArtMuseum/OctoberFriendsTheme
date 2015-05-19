@@ -326,6 +326,67 @@ body.home .icon-explore, body.home .icon-explore .svg-icon {
   fill:#454b4d;
 }
 
+/* POPUP HELP
+-----------------------------------------------------------------------------*/
+.popup-help-container {
+  float:right;
+  margin:.425em 4% 0 0;
+  position:relative;
+}
+body.home .popup-help-container,
+body.explore .popup-help-container {
+  margin-right:4em;
+}
+.popup-help-container .popup-help-button {
+  border-top-left-radius:1.25em; /* TODO: browser compatibility for radius */
+  border-top-right-radius:1.25em;
+  background:#dae2e5;
+  padding:.5em .375em 0 .375em;
+  width:2.5em;
+}
+.popup-help-container svg {
+  margin:0 auto;
+  fill:#454b4d;
+}
+.popup-help-container.active  .popup-help-button {
+  background:#6cc069;
+}
+.popup-help-container.active svg {
+  fill:#fff;
+}
+#popup-help-message {
+  display:none;
+  position:absolute;
+  top:1.25em;
+  right:0;
+  z-index:10000;
+  width:75vw;
+  background:#fff;
+  border:2px solid #6cc069;
+  margin:0;
+  -webkit-border-radius:.5em;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  padding:.75em .75em;
+  font-size:.938em;
+}
+#popup-help-message h1 {
+  margin:0;
+  font-size:1em;
+  font-weight:bold;
+  margin-bottom:.75em;
+}
+#popup-help-message strong {
+  color:#006485;
+}
+#popup-help-message p {
+  margin:0 0 1em 0;
+  font-weight:500;
+}
+#popup-help-message p:last-child {
+  margin:0;
+}
+
 /* TABS
 -----------------------------------------------------------------------------*/
 #page-tabs {

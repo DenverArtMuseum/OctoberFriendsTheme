@@ -1,14 +1,14 @@
 {% if emptyRecommendations == true %}
 <div class="empty-recommendations">
-    Empty Recommendation message
+    <p>Hi. You don’t have any personal recommendations yet since you just met Rover. Customize options using the Filters button at the top of this page. Or just start exploring. After you complete an activity from the list below, let Rover know. The more feedback you give the better you train Rover to retrieve recommendations for other activities.</p>
 </div>
 {% endif %}
 <ol class="rover-filtered-activity-list">
     {% for index, activity in activities %}
     <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
         <div class="buttons">
-            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">Remove</a>
-            <a class="do-btn" href="#" data-activity-id="{{activity.id}}">Complete</a>
+            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">No Thanks</a>
+            <a class="do-btn" href="#" data-activity-id="{{activity.id}}">I did this</a>
         </div>
         <div id="rover_activity_{{ activity.id }}" class="rover-activity preview group">
             <div class="swipe-indicator">

@@ -7,6 +7,9 @@ hidden = "0"
 
 [ActivityStream]
 filter = 'activity'
+
+[PopupHelp]
+topic = "@profile"
 ==
 <?
 function onStart()
@@ -16,6 +19,7 @@ function onStart()
 ?>
 ==
 {% put head %}
+    {% component 'PopupHelp' %}
     <h1><a href="/home" title="Home"><img class="masthead-logo" alt="Rover" title="Rover" src="{{ 'assets/images/banner.svg'|theme }}" /></a> My Rover</h1>
 {% endput %}
 {% put bodyclass %}tabbed-page{% endput %}
@@ -29,7 +33,7 @@ function onStart()
         <div id="activity-stream">{% component 'ActivityStream' %}</div>
     </div>
     <div id="ignored-activities" class="tabbed-container">
-        <div id="activity-stream">Unfinished</div>
+        <div id="activity-stream">&nbsp;</div>
     </div>
     <div id="user-profile" class="tabbed-container">
         {% component 'UserProfile' %}
