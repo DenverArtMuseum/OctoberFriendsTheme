@@ -412,6 +412,7 @@ body.explore .popup-help-container {
 ul.ui-tabs-nav li.ui-state-default,
 .tab-list .page-tab {
   background:transparent;
+  font-size:.875em;
   float:left;
   padding:0 .25em .125em .25em;
   margin:.125em .5em .063em .5em;
@@ -436,7 +437,6 @@ a.ui-tabs-anchor:hover,
 .page-tab a:hover,
 a.ui-tabs-anchor:active,
 .page-tab a:active {
-  font-size:.875em;
   font-weight:400;
   color:#454b4d; 
   text-decoration:none;
@@ -563,7 +563,9 @@ body.login {
 
 /* USER PROFILE PAGE
 -----------------------------------------------------------------------------*/
-.user-profile-form {}
+.user-profile-form {
+  margin-top:1.5em;
+}
 .user-profile-form .chng-passwd {
   font-size:.75em;
   width:14.1667em;
@@ -1015,20 +1017,6 @@ a.ignore-btn {
   margin:0 0 .5em 0;
 }
 
-
-@media (min-width: 768px) {
-  .modal-dialog {
-    width: 600px;
-    margin: 30px auto;
-  }
-  .modal-content {
-    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  }
-  .modal-sm {
-    width: 300px;
-  }
-}
 @media (min-width: 992px) {
   .modal-lg {
     width: 900px;
@@ -1241,7 +1229,109 @@ a.ignore-btn {
 .carousel-caption .btn {
   text-shadow: none;
 }
-@media screen and (min-width: 768px) {
+
+/* TABLET AND LARGER
+-----------------------------------------------------------------------------*/
+@media (min-width: 768px) {
+  /* PAGE
+  ---------------------------------------------------------------------------*/
+
+  /* HEADER/NAV
+  ---------------------------------------------------------------------------*/
+  .masthead-logo {
+    margin-right:1em;
+  }
+  .primary-links {
+    font-size:1.125em;
+  }
+  .svg-icon.nav {
+    height:2.33333em;
+  }
+
+  /* FLASH MESSAGES
+  ---------------------------------------------------------------------------*/
+  #flashMessages {
+    top:2em;
+    left:20%;
+    right:20%;
+    font-size:1.5em;
+  }
+
+  /* POPUP HELP
+  ---------------------------------------------------------------------------*/
+  body.home .popup-help-container,
+  body.explore .popup-help-container {
+    margin-right:6em;
+  }
+  #popup-help-message {
+    width:60vw;
+  }
+
+  /* TABS
+  ---------------------------------------------------------------------------*/
+  ul.ui-tabs-nav li.ui-state-default,
+  .tab-list .page-tab {
+    font-size:1.125em;
+    padding:0 .25em .125em .25em;
+    margin:.125em .75em .063em .75em;
+  } 
+  a.do-btn, a.ignore-btn {
+    font-size:1.25em;
+    padding:2em .75em 0 .75em;
+  }
+  .rover-activity .extended-content {
+    height:auto;
+    margin-top:.5em;
+  }
+
+  /* LOGIN & REGISTRATION
+  ---------------------------------------------------------------------------*/
+  .login-intro {
+    width:70%;
+    margin:1.5em auto;
+    font-size:1.5em;
+  }
+  .login-intro a {
+    display:block;
+    text-align:center;
+    margin:0 auto;
+  }
+
+  /* USER PROFILE
+  ---------------------------------------------------------------------------*/
+  .user-profile-form {
+    width: 60%;
+    margin:1.5em auto;
+  }
+
+  /* ACTIVITY LIST
+  ---------------------------------------------------------------------------*/
+  ol.rover-filtered-activity-list li.rover-activity-list-item {
+    font-size:1.125em;
+  }
+
+  /* ACTIVITY LIST FILTERS
+  ---------------------------------------------------------------------------*/
+  .rover-activity-filters ul {
+    font-size:1.25em;
+  }
+
+  /* MODAL
+  ---------------------------------------------------------------------------*/
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+
+  /* CAROUSEL (suspect these are unused, candidates for removal)
+  ---------------------------------------------------------------------------*/
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-prev,
@@ -1268,3 +1358,10 @@ a.ignore-btn {
     bottom: 20px;
   }
 }
+
+
+
+
+
+
+

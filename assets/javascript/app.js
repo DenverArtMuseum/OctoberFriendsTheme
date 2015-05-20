@@ -8,7 +8,9 @@ Rover.registerRevealedActivity = function(activity) {
 }
 
 Rover.unregisterRevealedActivity = function(activity) {
-  Rover.slidActivity = null;
+  if (Rover.slidActivity == activity) {
+    Rover.slidActivity = null;
+  }
   activity.classList.remove('slid');
 }
 
