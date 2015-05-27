@@ -5,10 +5,10 @@
 {% endif %}
 <ol class="rover-filtered-activity-list">
     {% for index, activity in activities %}
-    <li class="rover-activity-list-item" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
+    <li class="rover-activity-list-item group" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
         <div class="buttons">
-            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">No Thanks</a>
             <a class="do-btn" href="#" data-activity-id="{{activity.id}}">I did this</a>
+            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">No thanks</a>
         </div>
         <div id="rover_activity_{{ activity.id }}" class="rover-activity preview group">
             <div class="swipe-indicator">

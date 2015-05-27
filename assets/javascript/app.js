@@ -41,6 +41,7 @@ Rover.coverButtons = function(activity, delta) {
 
 Rover.prepareActivityList = function () {
 
+
   // Get the activity for the targeted element in an event
   function getActivity(event) {
     var activity = event.target;
@@ -154,11 +155,14 @@ Rover.prepareActivityList = function () {
     activityControl.on('panend',     dragStopActivity);
   }
 
+  // check for touch. If no-touch, don't bother setting up touch events.
+  var doc = document.documentElement;
+  if (doc.classList.contains('no-touch')) {
+    return;
+  }  
+
   // Find the list of activities in the page
   var activities = document.querySelectorAll('.rover-activity');
-
-  // Set current 'slid' activity to null
-  //var Rover.slidActivity = null;
 
   // assign event listeners to each activity
   for (var i = 0; i < activities.length; i += 1) {

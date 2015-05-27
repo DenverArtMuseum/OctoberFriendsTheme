@@ -340,7 +340,7 @@ body.explore .popup-help-container {
 .popup-help-container .popup-help-button {
   border-top-left-radius:1.25em; /* TODO: browser compatibility for radius */
   border-top-right-radius:1.25em;
-  background:#dae2e5;
+  background:transparent;
   padding:.5em .375em 0 .375em;
   width:2.5em;
 }
@@ -681,7 +681,7 @@ a.do-btn, a.ignore-btn {
   z-index:580;
   padding:2em .5em 0 .5em;
   display:block;
-  float:left;
+  float:right;
   text-decoration:none;
   height:100%;
 }
@@ -691,7 +691,7 @@ a.do-btn {
 }
 
 a.ignore-btn {
-  background-color:rgba(192,108,105,1); /* TODO: better red */
+  background-color:rgba(192,108,105,1);
 }
 
 .rover-activity.completed {
@@ -1233,9 +1233,6 @@ a.ignore-btn {
 /* TABLET AND LARGER
 -----------------------------------------------------------------------------*/
 @media (min-width: 768px) {
-  /* PAGE
-  ---------------------------------------------------------------------------*/
-
   /* HEADER/NAV
   ---------------------------------------------------------------------------*/
   .masthead-logo {
@@ -1359,6 +1356,157 @@ a.ignore-btn {
   }
 }
 
+/* DESKTOP
+ * all selectors preceded by html.no-touch to avoid screwing up hi-res tablets
+-----------------------------------------------------------------------------*/
+@media (min-width: 1024px) {
+  .no-touch .page-head {
+    min-height:3.188em;
+  }
+  .no-touch .masthead-logo {
+    height:1.25em;
+  }
+
+  .no-touch .primary-links {
+    position:absolute;
+    bottom:auto;
+    top:0;
+    right:10%;
+    left:auto;
+    display:block;
+    background:transparent;
+    border:none;
+  }
+  .no-touch .primary-links .item {
+    width:auto;
+    -webkit-border-radius:1.25em;
+    -moz-border-radius:1.25em;
+    border-radius:1.25em;
+    padding:0 .5em .125em;
+    margin-right:.25em;
+  }
+  .no-touch .primary-links .item:last-child {
+    float:left;
+    margin-right:0;
+  }
+  .no-touch .primary-links .item a, .no-touch .primary-links .item a:hover {
+    display:inline-block;
+    width:auto;
+    height:auto;
+    color:#454b4d;
+  }
+  .no-touch .svg-icon.nav {
+    width:1.25em;
+    height:1.25em;
+    display:inline;
+    position:relative;
+    top:.25em;
+    margin-right:.375em;
+    fill:#454b4d;
+  }
+
+  .no-touch body.profile .item.nav-profile {
+    background:#6cc069;
+  }
+  .no-touch body.profile .icon-profile, .no-touch body.profile .icon-profile .svg-icon {
+    color:#fff;
+    fill:#fff;
+  }
+
+  .no-touch body.explore .item.nav-explore,
+  .no-touch body.home .item.nav-explore {
+    background:#6cc069;
+  }
+  .no-touch body.explore .icon-explore, .no-touch body.explore .icon-explore .svg-icon,
+  .no-touch body.home .icon-explore, .no-touch body.home .icon-explore .svg-icon {
+    color:#fff;
+    fill:#fff;
+  }
+
+  /* ACTIVITY LIST
+  ---------------------------------------------------------------------------*/
+  .no-touch .rover-filtered-activity-list {
+    width: 75%;
+  }
+
+  .no-touch .rover-activity .swipe-indicator {
+    display:none;
+  }
+  .no-touch .rover-filtered-activity-list .buttons {
+    position:relative;
+    float:right;
+    height:100%;
+  }
+  .no-touch .rover-activity {
+    width:auto;
+  }
+  .no-touch a.do-btn, .no-touch a.ignore-btn {
+    float:none;
+    display:block;
+    margin:1em;
+    height:auto;
+    padding:.5em;
+    font-size:.875em;
+    border-radius:.375em;
+    text-align:center;
+  }
+  .no-touch a.do-btn {
+    background-color:rgba(77,184,219,1);
+  }
+  .no-touch a.ignore-btn {
+    background-color:#dae2e5;
+    color: #454b4d;
+  }
+
+  /* ACTIVITY LIST FILTERS
+  ---------------------------------------------------------------------------*/
+  .no-touch .rover-activity-filters {
+    position:absolute;
+    top:5.375em;
+    left:78%;
+  }
+  .no-touch .rover-filters-menu-btn {
+    display:none;
+  }
+  .no-touch .rover-activity-filters ul {
+    font-size:.875em;
+    padding:.5em;
+    display:block;
+    position:relative;
+    -webkit-border-radius:.375em;
+    -moz-border-radius:.375em;
+    border-radius:.375em;
+    border:thin dashed #8a9599;
+  }
+  .no-touch .rover-activity-filters:before {
+    content:"Filters:";
+    margin:0 0 2em .375em;
+    font-size:1em;
+  }
+  .no-touch .rover-activity-filters ul li.rover-activity-filters-item {
+    white-space:normal;
+  }
+
+  /* POPUP HELP
+  ---------------------------------------------------------------------------*/
+  .no-touch body.home .popup-help-container,
+  .no-touch body.explore .popup-help-container {
+    margin-right:4%;
+  }
+  .no-touch .popup-help-container svg {
+    position:relative;
+    top:.25em;
+    width:1.5em;
+    height:1.5em;
+  }
+  .no-touch .popup-help-container .popup-help-button {
+    padding-bottom:.875em;
+  }
+  .no-touch #popup-help-message {
+    font-size:1.25em;
+    top:1.875em;
+  }
+}
 
 
 
