@@ -618,6 +618,9 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
     width:100%;
     max-width:225px; /* TODO: pixels, how quaint */
 }
+.compact .rover-activity .image-container {
+  padding:0 .75em .75em 0;
+}
 
 .rover-activity .svg-icon {
   fill:#4db8db;
@@ -630,6 +633,9 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
   height:.875em;
   margin:2.375em 0 0 0;
   display:inline;
+}
+.compact .rover-activity .swipe-indicator .svg-icon {
+  margin-top:1.5em;
 }
 .rover-activity .swipe-indicator .svg-icon.right {
   display:none;
@@ -656,6 +662,10 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
   padding:.5em 0 .75em 2%;
   margin-left:23%;
   border-top:thin dashed #4db8db;
+}
+.compact .rover-activity .details {
+  font-size:.875em;
+  margin-left:0;
 }
 
 .rover-activity-list-item:first-child .details {
@@ -685,6 +695,9 @@ a.do-btn, a.ignore-btn {
   text-decoration:none;
   height:100%;
 }
+.compact a.do-btn, .compact a.ignore-btn {
+  padding-top:1.25em;
+}
 
 a.do-btn {
   background-color:rgba(108,192,105,1);
@@ -710,6 +723,7 @@ a.ignore-btn {
   height:0px;
   overflow:hidden;
   width:100%;
+  padding:0;
 }
 
 .rover-activity .extended-content p {
@@ -719,6 +733,9 @@ a.ignore-btn {
 
 .rover-activity.reveal .extended-content {
   height:auto;
+}
+.compact .rover-activity.reveal .extended-content {
+  padding-top:.75em;
 }
 
 /* PAGINATION
@@ -1272,14 +1289,6 @@ a.ignore-btn {
     padding:0 .25em .125em .25em;
     margin:.125em .75em .063em .75em;
   } 
-  a.do-btn, a.ignore-btn {
-    font-size:1.25em;
-    padding:2em .75em 0 .75em;
-  }
-  .rover-activity .extended-content {
-    height:auto;
-    margin-top:.5em;
-  }
 
   /* LOGIN & REGISTRATION
   ---------------------------------------------------------------------------*/
@@ -1305,6 +1314,20 @@ a.ignore-btn {
   ---------------------------------------------------------------------------*/
   ol.rover-filtered-activity-list li.rover-activity-list-item {
     font-size:1.125em;
+  }
+  a.do-btn, a.ignore-btn {
+    font-size:1.25em;
+    padding:2em .75em 0 .75em;
+  }
+  .rover-activity .extended-content {
+    height:auto;
+    margin-top:.5em;
+  }
+  .compact .rover-activity .extended-content {
+    height:0px;
+  }
+  .compact .rover-activity.reveal .extended-content {
+    height:auto;
   }
 
   /* ACTIVITY LIST FILTERS
@@ -1456,6 +1479,9 @@ a.ignore-btn {
   .no-touch a.ignore-btn {
     background-color:#dae2e5;
     color: #454b4d;
+  }
+  .no-touch .rover-activity .extended-content {
+    margin-top:0;
   }
 
   /* ACTIVITY LIST FILTERS

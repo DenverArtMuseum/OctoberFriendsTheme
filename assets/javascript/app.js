@@ -145,6 +145,14 @@ Rover.prepareActivityList = function () {
 
   // Each activity in the list gets its event listeners assigned here
   function prepareActivity(activity) {
+    var doc = document.documentElement;
+
+    // check for touch. If no-touch, don't bother setting up touch events.
+    if (doc.classList.contains('no-touch')) {
+      activity.onclick = toggleDetails;
+      return;
+    }
+
     var activityControl = new Hammer(activity);
 
     activityControl.on('tap',        toggleDetails);
@@ -154,12 +162,6 @@ Rover.prepareActivityList = function () {
     activityControl.on('swiperight', resetActivity);
     activityControl.on('panend',     dragStopActivity);
   }
-
-  // check for touch. If no-touch, don't bother setting up touch events.
-  var doc = document.documentElement;
-  if (doc.classList.contains('no-touch')) {
-    return;
-  }  
 
   // Find the list of activities in the page
   var activities = document.querySelectorAll('.rover-activity');

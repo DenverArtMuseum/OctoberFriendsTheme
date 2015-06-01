@@ -1,0 +1,46 @@
+<ol class="rover-filtered-activity-list compact">
+    {% for index, activity in activities %}
+    <li class="rover-activity-list-item group" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
+        <div class="buttons">
+            <a class="do-btn" href="#" data-activity-id="{{activity.id}}">I did this</a>
+            <a class="ignore-btn" href="#" data-activity-id="{{activity.id}}">No thanks</a>
+        </div>
+        <div id="rover_activity_{{ activity.id }}" class="rover-activity preview group">
+            <div class="swipe-indicator">
+                <svg class="svg-icon inline left"><use xlink:href="#icon-left-angle"></use></svg>
+                <svg class="svg-icon inline right"><use xlink:href="#icon-right-angle"></use></svg>
+            </div>
+            <div class="details">
+                <h3>{{ activity.title }}</h3>
+                <div class="activity-time">
+                    <span class="activity-duration"><svg class="svg-icon inline"><use xlink:href="#icon-duration"></use></svg>{{ activity.activity_fields.duration }}</span>
+                    {% if activity.restrictionToString %}
+                        <div class="activity-time-restriction"><svg class="svg-icon inline"><use xlink:href="#icon-clock"></use></svg>{{ activity.restrictionToString }}</div>
+                    {% else %}
+                        {% if activity.activity_fields.start_time != "00:00" %}
+                            <span class="activity-start-time"><svg class="svg-icon inline"><use xlink:href="#icon-clock"></use></svg>{{ activity.activity_fields.start_time }}</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="extended-content">
+                    <div class="image-container">
+                        {% if activity.image.path %}
+                            <img src="{{activity.image.path}}" />
+                        {% else %}
+                            <img src="" />
+                        {% endif %}
+                    </div>
+                    <div class="activity-location">
+                        <span class="icon-map-marker"><svg class="svg-icon inline location"><use xlink:href="#icon-location-full"></use></svg>{{ activity.activity_fields.location }}</span>
+                    </div>
+                    {{ activity.description|raw }}
+                </div>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ol>
+{% if hasLinks %}
+<div class="links">{{ links|raw }}</div>
+{% endif %}
