@@ -14,8 +14,8 @@
                 <h3>{{ activity.title }}</h3>
                 <div class="activity-time">
                     <span class="activity-duration"><svg class="svg-icon inline"><use xlink:href="#icon-duration"></use></svg>{{ activity.activity_fields.duration }}</span>
-                    {% if activity.restrictionToString %}
-                        <div class="activity-time-restriction"><svg class="svg-icon inline"><use xlink:href="#icon-clock"></use></svg>{{ activity.restrictionToString }}</div>
+                    {% if restrictions[loop.index0] %}
+                        <div class="activity-time-restriction"><svg class="svg-icon inline"><use xlink:href="#icon-clock"></use></svg>{{ restrictions[loop.index0] }}</div>
                     {% else %}
                         {% if activity.activity_fields.start_time != "00:00" %}
                             <span class="activity-start-time"><svg class="svg-icon inline"><use xlink:href="#icon-clock"></use></svg>{{ activity.activity_fields.start_time }}</span>
