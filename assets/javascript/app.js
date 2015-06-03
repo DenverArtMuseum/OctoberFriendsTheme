@@ -213,7 +213,7 @@ Rover.prepActivitiesWhenReady();
     });
 
     $('#flashMessages .refresh-btn').click(function() {
-      // Refresh active list pane (holy hell, none of this is written yet)
+      // Refresh active list pane 
       refreshActiveList();
       $('#rover-modal-background').remove();
       $('#flashMessages').fadeOut(500, function() {
@@ -228,29 +228,36 @@ Rover.prepActivitiesWhenReady();
   // This will need to be replaced after the demo, when we combine panes.
   function refreshActiveList() {
     var list = $('.rover-activity-filters-list');
-
+    
     var active_filters = {
       categories: 'all',
       search: ''
     };
-    
-    // generate a list of active categories if not all categories are active
-    if (list.find('.friends-activity-filter.inactive').length != 0) {
-      active_filters['categories'] = list
-        .find('.friends-activity-filter.active')
-        .map(function(i, e) {
-          return $(e).data('filter-name');
-        })
-        .get();
+
+    if (list.length) {
+      // generate a list of active categories if not all categories are active
+      if (list.find('.friends-activity-filter.inactive').length != 0) {
+        active_filters['categories'] = list
+          .find('.friends-activity-filter.active')
+          .map(function(i, e) {
+            return $(e).data('filter-name');
+          })
+          .get();
+      }
+
+      // initialize options for AJAX request
+      var options = {
+        data: { filters: JSON.stringify(active_filters) }
+      };
+
+      // Send the AJAX request to update the page
+      $.request(list.data('filter-component'), options);
     }
-
-    // initialize options for AJAX request
-    var options = {
-      data: { filters: JSON.stringify(active_filters) }
-    };
-
-    // Send the AJAX request to update the page
-    $.request(list.data('filter-component'), options);    
+    else {
+      var activity = jQuery(Rover.slidActivity); 
+      var target = activity.parents('.filtered-activity-list').data('component');
+      $.request(target, JSON.stringify(active_filters));
+    }
   }
 
   // Submit activity code when "do" button used
@@ -285,6 +292,18 @@ Rover.prepActivitiesWhenReady();
       };
 
       $.request('onRate', options);
+
+      return false;
+    });
+
+    $('a.unignore-btn').click(function() {
+      var activity = $(this).data('activity-id');
+
+      var options = {
+        data: { activity: parseInt(activity) }
+      };
+
+      $.request('onUndoHide', options);
 
       return false;
     });

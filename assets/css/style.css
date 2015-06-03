@@ -685,7 +685,7 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
   right:0;
 }
 
-a.do-btn, a.ignore-btn {
+a.do-btn, a.ignore-btn, a.unignore-btn {
   color:rgba(255,255,255,1);
   font-size:1em;
   z-index:580;
@@ -705,6 +705,10 @@ a.do-btn {
 
 a.ignore-btn {
   background-color:rgba(192,108,105,1);
+}
+
+a.unignore-btn {
+  background-color:rgba(69,75,77,1);
 }
 
 .rover-activity.completed {
@@ -1315,7 +1319,7 @@ a.ignore-btn {
   ol.rover-filtered-activity-list li.rover-activity-list-item {
     font-size:1.125em;
   }
-  a.do-btn, a.ignore-btn {
+  a.do-btn, a.ignore-btn, a.unignore-btn {
     font-size:1.25em;
     padding:2em .75em 0 .75em;
   }
@@ -1463,7 +1467,9 @@ a.ignore-btn {
   .no-touch .rover-activity {
     width:auto;
   }
-  .no-touch a.do-btn, .no-touch a.ignore-btn {
+  .no-touch a.do-btn,
+  .no-touch a.ignore-btn,
+  .no-touch a.unignore-btn {
     float:none;
     display:block;
     margin:1em;
@@ -1476,7 +1482,7 @@ a.ignore-btn {
   .no-touch a.do-btn {
     background-color:rgba(77,184,219,1);
   }
-  .no-touch a.ignore-btn {
+  .no-touch a.ignore-btn, .no-touch a.unignore-btn {
     background-color:#dae2e5;
     color: #454b4d;
   }
