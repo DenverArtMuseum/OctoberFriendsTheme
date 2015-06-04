@@ -187,6 +187,14 @@ Rover.prepActivitiesWhenReady = function () {
 Rover.prepActivitiesWhenReady();
 
 (function($) {
+  // Analytics: Custom Events Handling
+  function sendAnalyticsEvent(category, action, label) {
+    // If analytics is loaded and operating, send event
+    if (window.ga && typeof ga.create === "function") {
+      ga('send', 'event', category, action, label);
+    }
+  }
+
 
   // Display flash messages when they are received, set up close button handler(s)
   $('#flashMessages').on('ajaxUpdate', function(e) {
@@ -210,6 +218,7 @@ Rover.prepActivitiesWhenReady();
       var activity = jQuery(Rover.slidActivity);
       Rover.coverButtons(Rover.slidActivity,null);
       activity.hide();
+      sendAnalyticsEvent('Activity', 'Return to List', 'Dismiss');
     });
 
     $('#flashMessages .refresh-btn').click(function() {
@@ -222,6 +231,7 @@ Rover.prepActivitiesWhenReady();
       var activity = jQuery(Rover.slidActivity);
       Rover.coverButtons(Rover.slidActivity,null);
       activity.hide();
+      sendAnalyticsEvent('Activity', 'Return to List', 'Refresh');
     });
   });
 
@@ -275,6 +285,13 @@ Rover.prepActivitiesWhenReady();
       };
 
       $.request('onComplete', options);
+      // Prep and send analytics event
+      var label = 'Generic';
+      var recommendation = $(this).parents('.rover-activity-list-item').data('recommendation');
+      if (recommendation == 1) {
+        label = 'Recommendation';
+      }
+      sendAnalyticsEvent('Activity', 'Complete', label);
 
       return false;
     });
@@ -292,6 +309,14 @@ Rover.prepActivitiesWhenReady();
       };
 
       $.request('onRate', options);
+      
+      // Prep and send analytics event
+      var label = 'Generic';
+      var recommendation = $(this).parents('.rover-activity-list-item').data('recommendation');
+      if (recommendation == 1) {
+        label = 'Recommendation';
+      }
+      sendAnalyticsEvent('Activity', 'Hide', label);
 
       return false;
     });
@@ -304,6 +329,12 @@ Rover.prepActivitiesWhenReady();
       };
 
       $.request('onUndoHide', options);
+
+      // Prep and send analytics event
+      var label = $(this).parents('.rover-activity-list-item')
+                        .find('.details h3')
+                        .html();
+      sendAnalyticsEvent('Activity', 'Unhide', label);
 
       return false;
     });
@@ -340,6 +371,33 @@ Rover.prepActivitiesWhenReady();
     }
 
     return false;
+  });
+
+  var RoverGA = {};
+  RoverGA.lastFilter = '';
+
+  $(window).on('ajaxUpdateComplete', function(e, context, data, status, jqXHR) {
+    if (RoverGA.lastFilter != '' && context.options
+        && context.options.data && context.options.data.filters) {
+      var categories = JSON.parse(context.options.data.filters).categories;
+
+      if (categories == 'all') {
+        sendAnalyticsEvent('Activity', 'Filter', 'All');
+      }
+      else {
+        var action = 'Filter: Remove';
+        if ($.inArray(RoverGA.lastFilter, categories) > -1) {
+          action = 'Filter: Add';
+        }
+        sendAnalyticsEvent('Activity', action, RoverGA.lastFilter);
+      }
+      RoverGA.lastFilter = '';
+    }
+  });
+
+  $('a.friends-activity-filter').click(function() {
+    var filter = $(this);
+    RoverGA.lastFilter = filter.data('filter-name');
   });
 
   /* END FILTER THEME TWEAKS */
