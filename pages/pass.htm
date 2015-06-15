@@ -1,0 +1,22 @@
+title = "Forgotten your password?"
+layout = "login"
+url = "/forgot-password/:code?"
+
+[resetPassword]
+paramCode = "code"
+==
+<?php
+function onStart()
+{
+    if (Auth::getUser()) {
+        return Redirect::to('home');
+    }
+
+}
+?>
+==
+
+<img class="login-logo" src="{{ 'assets/images/logo.svg'|theme }}" alt="Rover" />
+<p>Enter your email address into the form to receive instructions for how to reset your password with Rover.</p>
+<p>Once you have received your activation code, enter it and your new password in the form below.</p>
+{% component 'resetPassword' %}

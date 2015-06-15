@@ -457,8 +457,20 @@ ul.ui-tabs-nav li.ui-state-default.ui-state-active a.ui-tabs-anchor:active,
 
 /* LOGIN & REGISTRATION
 -----------------------------------------------------------------------------*/
-body.login {
+body.login, body.pass {
   background:#4db8db;
+}
+
+body.pass .page-head {
+  display:none;
+}
+
+body.pass .login-content p, body.pass label {
+  color:#fff;
+}
+
+body.pass p {
+  font-weight:700;
 }
 
 .login-content {
