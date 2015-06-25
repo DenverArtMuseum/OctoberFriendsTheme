@@ -1402,6 +1402,9 @@ a.unignore-btn {
   .no-touch .page-head {
     min-height:3.188em;
   }
+  .no-touch .login .page-head {
+    min-height:0;
+  }
   .no-touch .masthead-logo {
     height:1.25em;
   }
@@ -1464,6 +1467,7 @@ a.unignore-btn {
 
   /* ACTIVITY LIST
   ---------------------------------------------------------------------------*/
+  .no-touch .empty-recommendations,
   .no-touch .rover-filtered-activity-list {
     width: 75%;
   }

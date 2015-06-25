@@ -382,7 +382,10 @@ Rover.prepActivitiesWhenReady();
       var categories = JSON.parse(context.options.data.filters).categories;
 
       if (categories == 'all') {
-        sendAnalyticsEvent('Activity', 'Filter', 'All');
+        sendAnalyticsEvent('Activity', 'Filter: Add', 'All');
+      }
+      else if (categories instanceof Array && categories.length <= 0) {
+        sendAnalyticsEvent('Activity', 'Filter: Remove', 'All');
       }
       else {
         var action = 'Filter: Remove';

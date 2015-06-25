@@ -3,15 +3,10 @@
     <button type="button" class="close rover-filters-menu-btn off">{% partial 'close-icon' %}</button>
     <ul
         class="rover-activity-filters-list friends-activity-filters-list"
-        data-filter-element="{{ element }}"
-        data-filter-partial="{{ partial }}"
         data-filter-component="{{ component }}"
     >
         <li class="rover-activity-filters-item friends-activity-filters-item">
-            <a href="#" class="rover-activity-filter-all friends-activity-filter-all"
-                data-request="onUpdate"
-                data-request-data="filter: 'all'"
-            >View All</a>
+            <a href="#" class="rover-activity-filter-all friends-activity-filter-all">Check/Uncheck All</a>
         </li>
         {% for category in categories %}
             <li class="rover-activity-filters-item friends-activity-filters-item">
