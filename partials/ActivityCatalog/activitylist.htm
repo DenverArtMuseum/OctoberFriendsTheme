@@ -40,6 +40,6 @@
     </li>
     {% endfor %}
 </ol>
-{% if hasLinks %}
+{% if activities.lastPage > 1 %}
 <div class="links">{{ links|raw }}</div>
 {% endif %}

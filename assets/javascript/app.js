@@ -366,7 +366,11 @@ Rover.prepActivitiesWhenReady();
         .css('right', 0)
         .css('z-index', 599)
         .css('background-color', '#000')
-        .fadeTo('fast',.5);
+        .fadeTo('fast',.5)
+        .click(function() {
+          $('.rover-filters-menu-btn').parent().removeClass('toggle-on');
+          $(this).fadeOut('fast').remove();
+        });
       filters.addClass('toggle-on');
     }
 
