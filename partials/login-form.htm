@@ -3,11 +3,11 @@
 
     <div class="form-group">
         <label>Email</label>
-        <input type="text" id="email" name="email" class="form-control"/>
+        <input type="text" id="email" name="email" class="form-control email-input" />
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="password" id="password" name="password" class="form-control"/>
+        <input type="password" id="password" name="password" class="form-control" />
     </div>
 
 	<div class="btn-toolbar group">
@@ -19,5 +19,14 @@
 	    </div>
     </div>
 </form>
+<script>
+var email = document.cookie.match('(^|;) ?roveruser=([^;]*)(;|$)');
+if (email) {
+    $('.login input.email-input').val(decodeURIComponent(email[2]));
+}
 
-
+$('.login input.email-input').change(function(e) {
+    var email = $(this).val();
+    document.cookie = 'roveruser=' + encodeURIComponent(email);
+});
+</script>
