@@ -1,20 +1,39 @@
 <div class="rover-activity-filters friends-activity-filters group">
     <a href="#" class="rover-filters-menu-btn on">Filters</a>
     <button type="button" class="close rover-filters-menu-btn off">{% partial 'close-icon' %}</button>
-    <ul
-        class="rover-activity-filters-list friends-activity-filters-list"
-        data-filter-component="{{ component }}"
-    >
-        <li class="rover-activity-filters-item friends-activity-filters-item">
-            <a href="#" class="rover-activity-filter-all friends-activity-filter-all">Check/Uncheck All</a>
-        </li>
-        {% for category in categories %}
+    <div class="rover-activity-filters-container">
+        <ul
+            class="rover-activity-filters-list friends-activity-filters-list"
+            data-filter-component="{{ component }}"
+        >
             <li class="rover-activity-filters-item friends-activity-filters-item">
-                <a href="#"
-                    class="rover-activity-filter friends-activity-filter active"
-                    data-filter-name="{{ category.name }}"
-                ><svg class="svg-icon inline box"><use xlink:href="#icon-box"></use></svg><svg class="svg-icon inline check"><use xlink:href="#icon-check"></use></svg>{{ category.name }}</a>
+                <a href="#" class="rover-activity-filter-all friends-activity-filter-all">Check/Uncheck All</a>
             </li>
-        {% endfor %}
-    </ul>
+            {% for category in categories %}
+                <li class="rover-activity-filters-item friends-activity-filters-item">
+                    <a href="#"
+                        class="rover-activity-filter friends-activity-filter active"
+                        data-filter-name="{{ category.name }}"
+                    ><svg class="svg-icon inline box"><use xlink:href="#icon-box"></use></svg><svg class="svg-icon inline check"><use xlink:href="#icon-check"></use></svg>{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="rover-activity-filters-sort-container">
+            <div class="filters-header">Sort list by:</div>
+            <ul class="rover-activity-filters-sort-list">
+                <li class="rover-activity-filters-sort-item">
+                    <a href="#"
+                        class="rover-activity-sort active"
+                        data-name="default"
+                    ><svg class="svg-icon inline box"><use xlink:href="#icon-box"></use></svg><svg class="svg-icon inline check"><use xlink:href="#icon-check"></use></svg>{% if this.page.baseFileName == 'home' %}Recommended{% else %}Alphabetical{% endif %}</a>
+                </li>
+                <li class="rover-activity-filters-sort-item">
+                    <a href="#"
+                        class="rover-activity-sort"
+                        data-name="location"
+                    ><svg class="svg-icon inline box"><use xlink:href="#icon-box"></use></svg><svg class="svg-icon inline check"><use xlink:href="#icon-check"></use></svg>Location</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

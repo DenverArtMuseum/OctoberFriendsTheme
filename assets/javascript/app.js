@@ -347,6 +347,59 @@ Rover.prepActivitiesWhenReady();
 
   /* BEGIN FILTER THEME TWEAKS */
 
+  // Set up sort controls for filters
+  $(document).ready(function() {
+    ActivityFilters.updateSort = function(choice) {
+      $('a.rover-activity-sort').each(function() {
+        if ($(this).data('name') == choice) {
+          $(this).addClass('active').removeClass('inactive');
+        }
+        else {
+          $(this).removeClass('active').addClass('inactive');
+        }
+        ActivityFilters.filters.sort = choice;
+        var active_filters = JSON.stringify(this.filters);
+        ActivityFilters.setCookie(active_filters);
+      });
+    };
+
+    ActivityFilters.sortByLocation = function() {
+      var list = $('.rover-filtered-activity-list');
+      var activities = list.children('li').get();
+      activities.sort(function(a,b) {
+        var compA = $(a).find('.icon-map-marker').text().toUpperCase();
+        var compB = $(b).find('.icon-map-marker').text().toUpperCase();
+        return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+      });
+      $.each(activities, function(idx, itm) { list.append(itm); });
+    };
+
+    ActivityFilters.loadSort = function() {
+      var sort = ActivityFilters.filters.sort;
+
+      if (sort != '' || sort != 'default') {
+        this.updateSort(sort);
+        this.sendUpdate();
+      }
+    };
+    
+    $('.rover-activity-sort').click(function() {
+      var sort = $(this);
+
+      var choice = sort.data('name');
+      if (choice == '' || choice == 'default' || window.location.pathname == "/explore") {
+        // updateinterface and sendupdate
+        ActivityFilters.updateSort(choice);
+        ActivityFilters.sendUpdate();
+      }
+      else {
+        ActivityFilters.updateSort(choice);
+        ActivityFilters.sortByLocation();
+      }
+      return false;
+    });
+  });
+
   // Reveal/Hide filters menu on menu button click
   $('.rover-filters-menu-btn').click(function () {
     var menubutton = $(this);

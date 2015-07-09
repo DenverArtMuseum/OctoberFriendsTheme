@@ -842,10 +842,9 @@ a.unignore-btn {
   text-decoration:none;
 }
 
-.rover-activity-filters ul {
+.rover-activity-filters .rover-activity-filters-container {
   padding:1.5em .75em .75em .75em;
   margin:0;
-  list-style:none;
   display:none;
   position:absolute;
   z-index:625;
@@ -857,11 +856,26 @@ a.unignore-btn {
   border-radius:.75em; 
   border:thin solid #8a9599;
 }
-.rover-activity-filters.toggle-on ul {
+.rover-activity-filters.toggle-on .rover-activity-filters-container {
   display:block;
 }
 
-.rover-activity-filters ul li.rover-activity-filters-item {
+.filters-header {
+  font-weight:bold;
+  font-size:1.125em;
+  margin-top:.75em;
+  padding-top:.5em;
+  border-top:thin dashed #8a9599;
+}
+
+.rover-activity-filters ul {
+  margin:0 0 .25em 0;
+  padding:0;
+  list-style:none;
+}
+
+.rover-activity-filters ul li.rover-activity-filters-item,
+.rover-activity-filters ul li.rover-activity-filters-sort-item {
   position:relative;
   border-top:1px solid black;
   padding-left:1.375em;
@@ -869,7 +883,9 @@ a.unignore-btn {
   margin-top:.25em;
   white-space:nowrap;
 }
-
+.rover-activity-filters ul li.rover-activity-filters-sort-item {
+  border-top:none;
+}
 .rover-activity-filters ul li.rover-activity-filters-item:first-child {
   border-top:none;
   margin-top:0;
@@ -877,28 +893,33 @@ a.unignore-btn {
 }
 
 .rover-activity-filter, .rover-activity-filter:hover,
-.rover-activity-filter-all, .rover-activity-filter-all:hover {
+.rover-activity-filter-all, .rover-activity-filter-all:hover,
+.rover-activity-sort, .rover-activity-sort:hover {
   color:#454b4d;
   text-decoration:none;
   width:100%;
   display:inline-block;
 }
 
-.rover-activity-filter .svg-icon {
+.rover-activity-filter .svg-icon,
+.rover-activity-sort .svg-icon {
   position:absolute;
   top:.125em;
   left:0;
 }
 
-.rover-activity-filter .svg-icon.box {
+.rover-activity-filter .svg-icon.box,
+.rover-activity-sort .svg-icon.box {
   display:inline;
   fill:#8a9599;
 }
-.rover-activity-filter .svg-icon.check {
+.rover-activity-filter .svg-icon.check,
+.rover-activity-sort .svg-icon.check {
   display:none;
   fill:#36474d;
 }
-.rover-activity-filter.active .svg-icon.check {
+.rover-activity-filter.active .svg-icon.check,
+.rover-activity-sort.active .svg-icon.check {
   display:inline;
 }
 
@@ -1516,10 +1537,11 @@ a.unignore-btn {
   .no-touch .rover-filters-menu-btn {
     display:none;
   }
-  .no-touch .rover-activity-filters ul {
+  .no-touch .rover-activity-filters-container {
+    display:block;
+
     font-size:.875em;
     padding:.5em;
-    display:block;
     position:relative;
     -webkit-border-radius:.375em;
     -moz-border-radius:.375em;
