@@ -325,6 +325,10 @@ body.home .icon-explore, body.home .icon-explore .svg-icon {
 #flashMessages .close-svg {
   fill:#454b4d;
 }
+.text-danger {
+  color:#BE3527;
+  font-weight:bold;
+}
 
 /* POPUP HELP
 -----------------------------------------------------------------------------*/
