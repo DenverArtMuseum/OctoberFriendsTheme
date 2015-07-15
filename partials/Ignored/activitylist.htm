@@ -1,4 +1,8 @@
 <ol class="rover-filtered-activity-list">
+    {% if activity_count == 0 %}
+        <p>The list of activities you hide would be displayed here, but you haven't hidden any activities yet. You can come back here any time and remove any hidden activities from your hidden list so that Rover can start recommending them again (in case you change your mind).</p>
+        <p>You can choose to hide activities from other lists by selecting "No thanks" for that activity. Doing so removes those activities from your Recommendations and Explore lists. This helps Rover tailor its recommendations to you, and prevents Rover from showing you activities you are not interested in.</p>
+    {% endif %}
     {% for index, activity in activities %}
     <li class="rover-activity-list-item group" data-categories="{% for category in activity.categories %}{{ category.slug }}, {% endfor %}" data-recommendation="{% if recommendation_size and index < recommendation_size %}1{% else %}0{% endif %}">
         <div class="buttons">

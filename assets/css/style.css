@@ -573,6 +573,19 @@ body.pass p {
   margin:0;
 }
 
+#partialUserResetForm label {
+  font-weight:bold;
+}
+
+body.pass p, body.pass #partialUserResetForm {
+  max-width: 500px;
+  margin:1em auto;
+}
+
+#partialUserResetForm {
+  margin-bottom:4em;
+}
+
 /* USER PROFILE PAGE
 -----------------------------------------------------------------------------*/
 .user-profile-form {
@@ -685,7 +698,7 @@ ol.rover-filtered-activity-list li.rover-activity-list-item {
 }
 
 .rover-activity a {
-    color: #454b4d;
+    color: #4db8db;
     text-decoration: none;
 }
 
@@ -1466,6 +1479,10 @@ a.unignore-btn {
     top:.25em;
     margin-right:.375em;
     fill:#454b4d;
+  }
+
+  .no-touch body.pass form {
+    max-width: 250px;
   }
 
   .no-touch body.profile .item.nav-profile {

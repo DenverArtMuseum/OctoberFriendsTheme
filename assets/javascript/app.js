@@ -154,13 +154,19 @@ Rover.prepareActivityList = function () {
     }
 
     var activityControl = new Hammer(activity);
+    var tapTargets = activity.querySelectorAll('.image-container, .details h3, .details .activity-time, .details .activity-location');
 
-    activityControl.on('tap',        toggleDetails);
+    //activityControl.on('tap',        toggleDetails);
     activityControl.on('panleft',    dragActivity);
     activityControl.on('swipeleft',  revealActivityButtons);
     activityControl.on('panright',   resetActivity);
     activityControl.on('swiperight', resetActivity);
     activityControl.on('panend',     dragStopActivity);
+
+    for (var i = 0; i< tapTargets.length; i += 1) {
+      var tapControl = new Hammer(tapTargets[i]);
+      tapControl.on('tap', toggleDetails);
+    }
   }
 
   // Find the list of activities in the page
@@ -206,8 +212,8 @@ Rover.prepActivitiesWhenReady();
       .css('bottom', 0)
       .css('right', 0)
       .css('z-index', 599)
-      .css('background-color', '#fff')
-      .fadeTo('fast',.5);
+      .css('background-color', '#ccc')
+      .fadeTo('fast',.7);
     $('#flashMessages').fadeIn(400);
 
     $('#flashMessages .close-btn').click(function() {
@@ -264,8 +270,7 @@ Rover.prepActivitiesWhenReady();
       $.request(list.data('filter-component'), options);
     }
     else {
-      var activity = jQuery(Rover.slidActivity); 
-      var target = activity.parents('.filtered-activity-list').data('component');
+      var target = $('.filtered-activity-list').data('component');
       $.request(target, JSON.stringify(active_filters));
     }
   }
@@ -349,116 +354,120 @@ Rover.prepActivitiesWhenReady();
 
   // Set up sort controls for filters
   $(document).ready(function() {
-    ActivityFilters.updateSort = function(choice) {
-      $('a.rover-activity-sort').each(function() {
-        if ($(this).data('name') == choice) {
-          $(this).addClass('active').removeClass('inactive');
+    if (typeof ActivityFilters !== 'undefined') {
+      ActivityFilters.updateSort = function(choice) {
+        $('a.rover-activity-sort').each(function() {
+          if ($(this).data('name') == choice) {
+            $(this).addClass('active').removeClass('inactive');
+          }
+          else {
+            $(this).removeClass('active').addClass('inactive');
+          }
+          ActivityFilters.filters.sort = choice;
+          var active_filters = JSON.stringify(this.filters);
+          ActivityFilters.setCookie(active_filters);
+        });
+      };
+
+      ActivityFilters.sortByLocation = function() {
+        var list = $('.rover-filtered-activity-list');
+        var activities = list.children('li').get();
+        activities.sort(function(a,b) {
+          var compA = $(a).find('.icon-map-marker').text().toUpperCase();
+          var compB = $(b).find('.icon-map-marker').text().toUpperCase();
+          return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+        });
+        $.each(activities, function(idx, itm) { list.append(itm); });
+      };
+
+      ActivityFilters.loadSort = function() {
+        var sort = ActivityFilters.filters.sort;
+
+        if (sort != '' || sort != 'default') {
+          this.updateSort(sort);
+          this.sendUpdate();
+        }
+      };
+      
+      $('.rover-activity-sort').click(function() {
+        var sort = $(this);
+
+        var choice = sort.data('name');
+        if (choice == '' || choice == 'default' || window.location.pathname == "/explore") {
+          // updateinterface and sendupdate
+          ActivityFilters.updateSort(choice);
+          ActivityFilters.sendUpdate();
         }
         else {
-          $(this).removeClass('active').addClass('inactive');
+          ActivityFilters.updateSort(choice);
+          ActivityFilters.sortByLocation();
         }
-        ActivityFilters.filters.sort = choice;
-        var active_filters = JSON.stringify(this.filters);
-        ActivityFilters.setCookie(active_filters);
+        return false;
       });
-    };
 
-    ActivityFilters.sortByLocation = function() {
-      var list = $('.rover-filtered-activity-list');
-      var activities = list.children('li').get();
-      activities.sort(function(a,b) {
-        var compA = $(a).find('.icon-map-marker').text().toUpperCase();
-        var compB = $(b).find('.icon-map-marker').text().toUpperCase();
-        return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-      });
-      $.each(activities, function(idx, itm) { list.append(itm); });
-    };
+      // Reveal/Hide filters menu on menu button click
+      $('.rover-filters-menu-btn').click(function () {
+        var menubutton = $(this);
+        var filters = menubutton.parent();
 
-    ActivityFilters.loadSort = function() {
-      var sort = ActivityFilters.filters.sort;
-
-      if (sort != '' || sort != 'default') {
-        this.updateSort(sort);
-        this.sendUpdate();
-      }
-    };
-    
-    $('.rover-activity-sort').click(function() {
-      var sort = $(this);
-
-      var choice = sort.data('name');
-      if (choice == '' || choice == 'default' || window.location.pathname == "/explore") {
-        // updateinterface and sendupdate
-        ActivityFilters.updateSort(choice);
-        ActivityFilters.sendUpdate();
-      }
-      else {
-        ActivityFilters.updateSort(choice);
-        ActivityFilters.sortByLocation();
-      }
-      return false;
-    });
-  });
-
-  // Reveal/Hide filters menu on menu button click
-  $('.rover-filters-menu-btn').click(function () {
-    var menubutton = $(this);
-    var filters = menubutton.parent();
-
-    if (filters.hasClass('toggle-on')) {
-      filters.removeClass('toggle-on');
-      $('#rover-modal-background').fadeOut('fast').remove();
-    }
-    else {
-      $('body').append('<div id="rover-modal-background"></div>');
-      $('#rover-modal-background').css('position', 'fixed')
-        .hide()
-        .css('top', 0)
-        .css('left', 0)
-        .css('bottom', 0)
-        .css('right', 0)
-        .css('z-index', 599)
-        .css('background-color', '#000')
-        .fadeTo('fast',.5)
-        .click(function() {
-          $('.rover-filters-menu-btn').parent().removeClass('toggle-on');
-          $(this).fadeOut('fast').remove();
-        });
-      filters.addClass('toggle-on');
-    }
-
-    return false;
-  });
-
-  var RoverGA = {};
-  RoverGA.lastFilter = '';
-
-  $(window).on('ajaxUpdateComplete', function(e, context, data, status, jqXHR) {
-    if (RoverGA.lastFilter != '' && context.options
-        && context.options.data && context.options.data.filters) {
-      var categories = JSON.parse(context.options.data.filters).categories;
-
-      if (categories == 'all') {
-        sendAnalyticsEvent('Activity', 'Filter: Add', 'All');
-      }
-      else if (categories instanceof Array && categories.length <= 0) {
-        sendAnalyticsEvent('Activity', 'Filter: Remove', 'All');
-      }
-      else {
-        var action = 'Filter: Remove';
-        if ($.inArray(RoverGA.lastFilter, categories) > -1) {
-          action = 'Filter: Add';
+        if (filters.hasClass('toggle-on')) {
+          filters.removeClass('toggle-on');
+          $('#rover-modal-background').fadeOut('fast').remove();
         }
-        sendAnalyticsEvent('Activity', action, RoverGA.lastFilter);
-      }
+        else {
+          $('body').append('<div id="rover-modal-background"></div>');
+          $('#rover-modal-background').css('position', 'fixed')
+            .hide()
+            .css('top', 0)
+            .css('left', 0)
+            .css('bottom', 0)
+            .css('right', 0)
+            .css('z-index', 599)
+            .css('background-color', '#000')
+            .fadeTo('fast',.5)
+            .click(function() {
+              $('.rover-filters-menu-btn').parent().removeClass('toggle-on');
+              $(this).fadeOut('fast').remove();
+            });
+          filters.addClass('toggle-on');
+        }
+
+        return false;
+      });
+
+      var RoverGA = {};
       RoverGA.lastFilter = '';
+
+      $(window).on('ajaxUpdateComplete', function(e, context, data, status, jqXHR) {
+        if (RoverGA.lastFilter != '' && context.options
+            && context.options.data && context.options.data.filters) {
+          var categories = JSON.parse(context.options.data.filters).categories;
+
+          if (categories == 'all') {
+            sendAnalyticsEvent('Activity', 'Filter: Add', 'All');
+          }
+          else if (categories instanceof Array && categories.length <= 0) {
+            sendAnalyticsEvent('Activity', 'Filter: Remove', 'All');
+          }
+          else {
+            var action = 'Filter: Remove';
+            if ($.inArray(RoverGA.lastFilter, categories) > -1) {
+              action = 'Filter: Add';
+            }
+            sendAnalyticsEvent('Activity', action, RoverGA.lastFilter);
+          }
+          RoverGA.lastFilter = '';
+        }
+      });
+
+      $('a.friends-activity-filter').click(function() {
+        var filter = $(this);
+        RoverGA.lastFilter = filter.data('filter-name');
+      });
     }
   });
 
-  $('a.friends-activity-filter').click(function() {
-    var filter = $(this);
-    RoverGA.lastFilter = filter.data('filter-name');
-  });
+
 
   /* END FILTER THEME TWEAKS */
 
